@@ -1,0 +1,162 @@
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-family: 'Inter';
+}
+
+h1 {
+    color: white;
+
+    font-weight: 900;
+    font-size: 100px;
+    line-height: 90%;
+    text-shadow: 2px 2px black;
+}
+
+.navbar h5 {
+    margin-top: 12px;
+    margin-bottom: 12px;
+}
+
+.navbar .button-group {
+    padding: 0;
+    padding-left: 20px;
+    padding-right: 20px;
+}
+
+.header {
+    height: 850px;
+    background-image: url("/images/doctor3.jpeg");
+    background-size: cover;
+    background-attachment: fixed;
+    padding-left: 40px;
+}
+
+.logo-wrap {
+    padding-top: 100px;
+    padding-bottom: 100px;
+}
+
+.logo {
+    width: 25%;
+    text-align: center;
+    margin: 0 auto;
+}
+
+.button-group {
+    padding: 20px;
+}
+
+.button-group h3 {
+    font-family: "Poppins";
+    font-weight: 600;
+}
+
+.btn h3 {
+    font-family: "Poppins";
+    font-size: 32px;
+    margin-bottom: 0;
+}
+
+.button-group .btn {
+    margin-right: 20px;
+}
+
+/* About Section */
+
+.about {
+    margin-top: 150px;
+    margin-bottom: 150px;
+    text-align: center;
+}
+
+.card {
+    margin: 30px;
+}
+
+.about h2 {
+    font-size: 52px;
+    font-weight: 600;
+}
+
+/* Why Us */
+.whyUs {
+    margin-top: 150px;
+    margin-bottom: 100px;
+    text-align: center;
+}
+
+.whyUs h2 {
+    font-size: 52px;
+    font-weight: 600;
+}
+
+/* Register */
+
+.register img {
+    width: 100%;
+    padding-bottom: 100px;
+}
+
+.reg {
+    padding-top: 100px;
+}
+
+.reg .btn {
+    padding: 15px;
+
+}
+
+.reg h5 {
+    margin-bottom: 0;
+    font-weight: 600;
+}
+
+/* Line */
+.line {
+    height: 80px;
+    background: rgb(255, 50, 79);
+    background: linear-gradient(90deg, rgba(255, 50, 79, 1) 0%, rgba(253, 29, 29, 1) 50%, rgba(210, 1, 5, 1) 100%);
+    display: flex;
+}
+
+.line h2 {
+    margin: auto;
+    color: white;
+    font-weight: 600;
+    font-family: "Poppins";
+
+
+}
+
+footer {
+    padding-bottom: 50px;
+}
+
+/* Modal */
+.modal-dialog {
+    max-width: 670px;
+}
+
+.modal-body p {
+    display: inline-block;
+}
+
+.modal-body .btn-danger {
+    width: 170px;
+}
+
+.modal-body .danger1 {
+    margin-left: 71px;
+}
+
+.modal-body .danger2 {
+    margin-left: 30px;
+}
+
+.modal-footer {
+    display: block;
+}
