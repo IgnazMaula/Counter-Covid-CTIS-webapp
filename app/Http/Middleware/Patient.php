@@ -19,13 +19,13 @@ class Patient
         if(!Auth::check()) {
             return redirect()->route('login');
         }
-        if(Auth::user()->role == 1) {
+        if(Auth::user()->role == 'patient') {
             return $next($request);
         }
-        if(Auth::user()->role == 2) {
+        if(Auth::user()->role == 'manager') {
             return redirect()->route('manager');
         }
-        if(Auth::user()->role == 3) {
+        if(Auth::user()->role == 'tester') {
             return redirect()->route('tester');
         }
     }

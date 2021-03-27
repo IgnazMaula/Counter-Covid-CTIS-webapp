@@ -19,13 +19,13 @@ class Manager
         if(!Auth::check()) {
             return redirect()->route('login');
         }
-        if(Auth::user()->role == 2) {
+        if(Auth::user()->role == 'manager') {
             return $next($request);
         }
-        if(Auth::user()->role == 1) {
+        if(Auth::user()->role == 'patient') {
             return redirect()->route('patient');
         }
-        if(Auth::user()->role == 3) {
+        if(Auth::user()->role == 'tester') {
             return redirect()->route('tester');
         }
         

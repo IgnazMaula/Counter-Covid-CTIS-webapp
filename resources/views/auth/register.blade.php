@@ -1,4 +1,4 @@
-{{-- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
@@ -46,83 +46,80 @@
             <div class="row g-3">
                 <div class="col-lg-12">
                     <h4 class="mb-3">Please Fill the Registration Form</h4>
-                    <form class="needs-validation" method="POST" action="{{ route('register') }}">
+                    <form method="POST" action="{{ route('register') }}">
                         @csrf
+
+
                         <div class="row g-3">
+                            {{-- First Name --}}
                             <div class="col-sm-6">
-                                <label for="firstName" class="form-label">First name</label>
-                                <input type="text" class="form-control" id="firstName" placeholder="First Name" value=""
-                                    required="">
-                                <div class="invalid-feedback">
-                                    Valid first name is required.
-                                </div>
+                                <label for="firstName">{{ __('First Name') }}</label>
+                                <input type="text" class="form-control" id="firstName" name="name"
+                                    placeholder="first name" value="{{ old('firstName') }}" required autofocus>
+                                {{-- @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror --}}
                             </div>
-
+                            {{-- Last Name --}}
                             <div class="col-sm-6">
-                                <label for="lastName" class="form-label">Last name</label>
-                                <input type="text" class="form-control" id="lastName" placeholder="Last Name" value=""
-                                    required="">
-                                <div class="invalid-feedback">
-                                    Valid last name is required.
-                                </div>
+                                <label for="lastName">{{ __('Last Name') }}</label>
+                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                    placeholder="last name" value="{{ old('lastName') }}" required autofocus>
+                                {{-- @error('name')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror --}}
                             </div>
-
+                            {{-- Email --}}
                             <div class="col-12">
-                                <label for="username" class="form-label">Username</label>
-                                <div class="input-group has-validation">
-
-                                    <input type="text" class="form-control" id="username" placeholder="Username"
-                                        required="">
-                                    <div class="invalid-feedback">
-                                        Your username is required.
-                                    </div>
-                                </div>
+                                <label for="email" class="form-label">{{ __('E-Mail Address') }}</label>
+                                <input type="email" class="form-control @error('email') is-invalid @enderror" id="email"
+                                    name="email" placeholder="youremail@example.com" value="{{ old('email') }}"
+                                    required>
+                                @error('email')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-
+                            {{-- Password --}}
                             <div class="col-12">
-                                <label for="email" class="form-label">Email <span class="text-muted"></span></label>
-                                <input type="email" class="form-control" id="email" placeholder="youremail@example.com">
-                                <div class="invalid-feedback">
-                                    Please enter a valid email address for shipping updates.
-                                </div>
+                                <label for="password" class="form-label">{{ __('Password') }}</label>
+                                <input type="password" class="form-control @error('password') is-invalid @enderror"
+                                    id="password" name="password" required>
+                                @error('password')
+                                    <span class="invalid-feedback" role="alert">
+                                        <strong>{{ $message }}</strong>
+                                    </span>
+                                @enderror
                             </div>
-
+                            {{-- Confirm Password --}}
                             <div class="col-12">
-                                <label for="password" class="form-label">Password</label>
-                                <input type="password" class="form-control" id="password" placeholder="password"
-                                    required="">
-                                <div class="invalid-feedback">
-                                    Please enter your password.
-                                </div>
+                                <label for="password-confirm" class="form-label">{{ __('Confirm Password') }}</label>
+                                <input id="password-confirm" type="password" class="form-control"
+                                    name="password_confirmation" required>
                             </div>
-
-                            <div class="col-12">
-                                <label for="retypePassword" class="form-label">Retype Password</label>
-                                <input type="password" class="form-control" id="retypePassword"
-                                    placeholder="Retype password" required="">
-                                <div class="invalid-feedback">
-                                    Please enter your password.
-                                </div>
-                            </div>
-
+                            {{-- Birth Date --}}
                             <div class="col-6 mt-3 pe-5" id="sandbox-container">
-                                <label for="birthdate" class="form-label">Birthdate</label>
-                                <input type="text" class="form-control" id="birthdate" placeholder="mm/dd/yyyy"
-                                    required="">
-                                <div class="invalid-feedback">
-                                    Please enter your password.
-                                </div>
+                                <label for="birthDate" class="form-label">{{ __('Birth Date') }}</label>
+                                <input type="text" class="form-control" id="birthDate" name="birthDate"
+                                    placeholder="mm/dd/yyyy" value="{{ old('birthDate') }}" required>
                             </div>
+                            {{-- Gender --}}
                             <div class="col-6 mt-3 ps-5">
-                                <label for="address" class="form-label">Gender</label>
+                                <label for="gender" class="form-label">{{ __('Gender') }}</label>
                                 <div class="form-check">
-                                    <input id="male" name="gender" type="radio" class="form-check-input" checked=""
-                                        required="">
-                                    <label class="form-check-label" for="male">Male</label>
+                                    <input id="gender" name="gender" type="radio" class="form-check-input" value="male"
+                                        checked="" required="">
+                                    <label class="form-check-label">Male</label>
                                 </div>
                                 <div class="form-check">
-                                    <input id="female" name="gender" type="radio" class="form-check-input" required="">
-                                    <label class="form-check-label" for="female">Female</label>
+                                    <input id="gender" name="gender" type="radio" class="form-check-input"
+                                        value="female" required="">
+                                    <label class="form-check-label">Female</label>
                                 </div>
                             </div>
 
@@ -130,11 +127,11 @@
 
                         <hr class="my-4">
 
-                        <button class="w-100 btn btn-danger btn-lg" type="submit">Register Now</button>
+                        <button class="w-100 btn btn-danger btn-lg" type="submit">{{ __('Register Now') }}</button>
                         <br><br>
                         <a href="index.html">
-                            <button class="w-100 btn btn-outline-secondary btn-lg" type="button">Back to Main
-                                Page</button>
+                            <button class="w-100 btn btn-outline-secondary btn-lg"
+                                type="button">{{ __('Back to Main Page') }}</button>
                         </a>
                     </form>
                 </div>
@@ -187,9 +184,9 @@
 
 </body>
 
-</html> --}}
+</html>
 
-@extends('layouts.app')
+{{-- @extends('layouts.app')
 
 @section('content')
     <div class="container">
@@ -273,4 +270,4 @@
             </div>
         </div>
     </div>
-@endsection
+@endsection --}}

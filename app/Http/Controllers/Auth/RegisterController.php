@@ -1,6 +1,7 @@
 <?php
 
 namespace App\Http\Controllers\Auth;
+use Auth;
 
 use App\Http\Controllers\Controller;
 use App\Providers\RouteServiceProvider;
@@ -31,6 +32,28 @@ class RegisterController extends Controller
      */
     protected $redirectTo = RouteServiceProvider::HOME;
 
+    public function redirectTo() {
+        switch(Auth::user()->role) {
+
+            case 'patient':
+                $this->redirectTo = '/patientDashboard';
+                return $this->redirectTo;
+                break;
+            case 'manager':
+                $this->redirectTo = '/manager';
+                return $this->redirectTo;
+                break;
+            case 'tester':
+                $this->redirectTo = '/tester';
+                return $this->redirectTo;
+                break;
+            default:
+                $this->redirectTo = '/login';
+                return $this->redirectTo;
+                break;
+        }
+    }
+
     /**
      * Create a new controller instance.
      *
@@ -53,6 +76,7 @@ class RegisterController extends Controller
             'name' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'birthDate' => ['required', 'string', 'max:255'],
         ]);
     }
 
@@ -63,11 +87,16 @@ class RegisterController extends Controller
      * @return \App\Models\User
      */
     protected function create(array $data)
-    {
+    {   
+        $name = $data['name'] . ' ' . $data['lastName'];
+        
         return User::create([
-            'name' => $data['name'],
+            
+            'name' => $name,
             'email' => $data['email'],
             'password' => Hash::make($data['password']),
+            'birthDate' => $data['birthDate'],
+            'gender'=> $data['gender'],
         ]);
     }
 }

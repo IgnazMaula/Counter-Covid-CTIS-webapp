@@ -32,15 +32,15 @@ class LoginController extends Controller
     public function redirectTo() {
         switch(Auth::user()->role) {
 
-            case 1:
+            case 'patient':
                 $this->redirectTo = '/patientDashboard';
                 return $this->redirectTo;
                 break;
-            case 2:
+            case 'manager':
                 $this->redirectTo = '/manager';
                 return $this->redirectTo;
                 break;
-            case 3:
+            case 'tester':
                 $this->redirectTo = '/tester';
                 return $this->redirectTo;
                 break;
