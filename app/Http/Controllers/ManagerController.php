@@ -11,11 +11,31 @@ class ManagerController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function dashboard()
     {
-        return view('manager.index');
+        return view('manager.dashboard');
     }
 
+    public function registerTester()
+    {
+        return view('manager.registerTester');
+    }
+
+    public function viewTesters()
+    {
+        return view('manager.viewTesters');
+    }
+
+    public function manageTestKit()
+    {
+        return view('manager.manageTestKit');
+    }
+    
+    public function viewTestingHistory()
+    {
+        return view('manager.viewTestingHistory');
+    }
+    
     /**
      * Show the form for creating a new resource.
      *

@@ -29,7 +29,13 @@ Route::get('/patient/viewTestingHistory', 'App\Http\Controllers\PatientControlle
 
 
 
-Route::get('/manager', 'ManagerController@index')->name('manager')->middleware('manager');
+Route::get('/manager/dashboard', 'App\Http\Controllers\ManagerController@dashboard')->name('managerDashboard')->middleware('manager');
+Route::get('/manager/registerTester', 'App\Http\Controllers\ManagerController@registerTester')->name('registerTester')->middleware('manager');
+Route::get('/manager/viewTesters', 'App\Http\Controllers\ManagerController@viewTesters')->name('viewTesters')->middleware('manager');
+Route::get('/manager/manageTestKit', 'App\Http\Controllers\ManagerController@manageTestKit')->name('manageTestKit')->middleware('manager');
+Route::get('/manager/viewTestingHistory', 'App\Http\Controllers\ManagerController@viewTestingHistory')->name('viewTestingHistory')->middleware('manager');
+
+
 Route::get('/tester', 'TesterController@index')->name('tester')->middleware('tester');
 
 

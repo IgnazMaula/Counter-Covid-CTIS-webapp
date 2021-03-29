@@ -15,9 +15,11 @@ class PatientController extends Controller
     {
         return view('patient.dashboard');
     }
+
     public function bookTestSchedule() {
         return view('patient.bookTestSchedule');
     }
+    
     public function viewTestingHistory() {
         return view('patient.viewTestingHistory');
     }
