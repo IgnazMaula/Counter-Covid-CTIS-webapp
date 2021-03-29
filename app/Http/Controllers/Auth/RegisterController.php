@@ -36,7 +36,7 @@ class RegisterController extends Controller
         switch(Auth::user()->role) {
 
             case 'patient':
-                $this->redirectTo = '/patientDashboard';
+                $this->redirectTo = '/patient/dashboard';
                 return $this->redirectTo;
                 break;
             case 'manager':

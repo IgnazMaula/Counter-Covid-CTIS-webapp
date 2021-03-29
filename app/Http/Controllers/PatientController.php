@@ -11,12 +11,15 @@ class PatientController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function dashboard()
     {
-        return view('patient.patientDashboard');
+        return view('patient.dashboard');
     }
-    public function test() {
-        return view('patient.test');
+    public function bookTestSchedule() {
+        return view('patient.bookTestSchedule');
+    }
+    public function viewTestingHistory() {
+        return view('patient.viewTestingHistory');
     }
 
     /**
