@@ -78,7 +78,7 @@
                     <span>Manage Test Kit<i class="fas fa-kite    "></i></span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('viewTestingHistory') }}">
+                <a class="nav-link" href="{{ route('managerViewTestingHistory') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>View Testing History</span></a>
             </li>

@@ -12,13 +12,18 @@
     <title>Counter-Covid CTIS - View Testing History</title>
 
     <!-- Icon -->
-    <link rel="icon" src="/images/favicon.webp">
+    <link rel="icon" href="/images/favicon.webp">
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+
+
+    <!-- Date Picker -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css" />
 
     <!-- Custom styles for this template-->
     <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
@@ -48,7 +53,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('patientDashboard') }}">
+                <a class="nav-link" href="{{ route('testerDashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -58,19 +63,27 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Patient Menu
+                Tester Menu
             </div>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('bookTestSchedule') }}">
-                    <i class="fas fa-fw fa-book-medical"></i>
-                    <span>Book Test Schedule</span></a>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('registerPatient') }}">
+                    <i class="fas fas fa-user-plus"></i>
+                    <span>Register Patient</span></a>
             </li>
-
-            <!-- Nav Item - Tables -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('approveTestRequest') }}">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Approve Test Request</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('updateTestResult') }}">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>Update Test Result</span></a>
+            </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('patientViewTestingHistory') }}">
+                <a class="nav-link" href="{{ route('testerViewTestingHistory') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>View Testing History</span></a>
             </li>
@@ -135,32 +148,22 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        Welcome
-                                        @if (Auth::user()->gender == 'male')
-                                            Mr.
-                                        @elseif (Auth::user()->gender == 'female')
-                                            Ms.
-                                        @endif
-                                        <strong>{{ Auth::user()->name }}</strong>
+                                        Welcome Mr. <strong>Kimi Raikkonen</strong>
                                     </span>
-                                    <img src="https://img.icons8.com/color/48/ffffff/pharmacistmen.png" />
+                                    <img src="https://img.icons8.com/color/48/ffffff/nurse-male.png" />
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        {{ __('Logout') }}
+                                        Logout
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
                                 </div>
                             </li>
                         </ul>
+
                 </nav>
                 <!-- End of Topbar -->
 
@@ -168,7 +171,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Patient Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tester Dashboard</h1>
                         <a href="#" class="d-none d-sm-inline-block btn btn-sm btn-danger shadow-sm"><i
                                 class="fas fa-download fa-sm text-white-50"></i> Generate Report</a>
                     </div>
@@ -184,7 +187,7 @@
                                     <thead>
                                         <tr>
                                             <th>Test ID</th>
-                                            <th>Test Center</th>
+                                            <th>Patient Name</th>
                                             <th>Test Type</th>
                                             <th>Test Date</th>
                                             <th>Test Status</th>
@@ -194,7 +197,7 @@
                                     <tfoot>
                                         <tr>
                                             <th>Test ID</th>
-                                            <th>Test Center</th>
+                                            <th>Patient Name</th>
                                             <th>Test Type</th>
                                             <th>Test Date</th>
                                             <th>Test Status</th>
@@ -669,6 +672,7 @@
                 <!-- End of Main Content -->
 
 
+
             </div>
             <!-- End of Content Wrapper -->
 
@@ -716,7 +720,7 @@
         <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
         <!-- Core plugin JavaScript-->
-        <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+        <script src="vendor/jquery-easing/jquery.easing.min.js"></script>
 
         <!-- Custom scripts for all pages-->
         <script src="/js/sb-admin-2.min.js"></script>

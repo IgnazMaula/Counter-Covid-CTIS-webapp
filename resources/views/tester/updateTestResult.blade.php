@@ -9,7 +9,8 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Counter-Covid CTIS - Dashboard</title>
+    <title>Counter-Covid CTIS - Update Test Result</title>
+
     <!-- Icon -->
     <link rel="icon" href="/images/favicon.webp">
 
@@ -22,7 +23,6 @@
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/css/sb-admin-custom.css" rel="stylesheet">
-    <link href="/css/numberInput.css" rel="stylesheet">
 
 </head>
 
@@ -47,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('managerDashboard') }}">
+                <a class="nav-link" href="{{ route('testerDashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -57,31 +57,30 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Manager Menu
+                Tester Menu
             </div>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('registerTester') }}">
+                <a class="nav-link" href="{{ route('registerPatient') }}">
                     <i class="fas fas fa-user-plus"></i>
-                    <span>Register Tester</span></a>
+                    <span>Register Patient</span></a>
             </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('viewTesters') }}">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>View Testers</span></a>
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('approveTestRequest') }}">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Approve Test Request</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('manageTestKit') }}">
-                    <i class="fas fa-fw fa-syringe"></i>
-                    <span>Manage Test Kit<i class="fas fa-kite    "></i></span></a>
+                <a class="nav-link" href="{{ route('updateTestResult') }}">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>Update Test Result</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('managerViewTestingHistory') }}">
+                <a class="nav-link" href="{{ route('testerViewTestingHistory') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>View Testing History</span></a>
             </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -143,9 +142,9 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        Welcome Mr. <strong>Toto Wolff</strong>
+                                        Welcome Mr. <strong>Kimi Raikkonen</strong>
                                     </span>
-                                    <img src="https://img.icons8.com/color/48/ffffff/manager.png" />
+                                    <img src="https://img.icons8.com/color/48/ffffff/nurse-male.png" />
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -168,163 +167,104 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Manager Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tester Dashboard</h1>
                     </div>
 
-                    <!-- Content Row -->
-                    <div class="row text-center">
-
-
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-bottom-danger shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <i class="fas fa-syringe  fa-3x text-gray-300"></i><br><br>
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"
-                                                style="font-size: 15px">
-                                                Total Stock of Rapid Test Kit</div><br>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="font-size: 40px;">19</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-bottom-danger shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <i class="fas fa-syringe  fa-3x text-gray-300"></i><br><br>
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"
-                                                style="font-size: 15px">
-                                                Total Stock of Swab Test Kit</div><br>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="font-size: 40px;">11</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-bottom-danger shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <i class="fas fa-syringe fa-3x text-gray-300"></i><br><br>
-                                            <div class="text-xs font-weight-bold text-danger text-uppercase mb-1"
-                                                style="font-size: 15px">
-                                                Total Stock of PCR Test Kit</div><br>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="font-size: 40px;">8</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                        <div class="col-xl-3 col-md-6 mb-4">
-                            <div class="card border-bottom-secondary shadow h-100 py-2">
-                                <div class="card-body">
-                                    <div class="row no-gutters align-items-center">
-                                        <div class="col mr-2">
-                                            <i class="fas fa-syringe  fa-3x text-gray-300"></i><br><br>
-                                            <div class="text-xs font-weight-bold text-secondary text-uppercase mb-1"
-                                                style="font-size: 15px">
-                                                Total of Overall Test Kit Stock</div><br>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="font-size: 40px;">38</div>
-                                        </div>
-                                    </div>
-                                </div>
-                            </div>
-                        </div>
-
-                    </div>
-
-                    <!-- Content Row -->
 
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-9 col-lg-6">
+                        <div class="col-lg-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">Update Test Kit Stock</h6>
+                                    <h6 class="m-0 font-weight-bold text-dark">Incoming Test Request</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <table ble class="table table-borderless">
+                                    <table class="table table-hover">
+                                        <thead>
+                                            <tr>
+                                                <th scope="col">Test ID</th>
+                                                <th scope="col" colspan="2">Patient Name</th>
+                                                <th scope="col">Test Type</th>
+                                                <th scope="col">Test Date</th>
+                                                <th scope="col"></th>
+                                                <th scope="col" class="text-center">Set Patient Status</th>
+                                            </tr>
+                                        </thead>
                                         <tbody>
                                             <tr>
-                                                <th scope="row">Rapid Test Kit Stock</th>
-                                                <td>
-                                                    <div style="width: 50%; margin: 0 auto;">
-                                                        <input type="number" value="19" min="0" max="100" step="1"
-                                                            name="rapid" />
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-sm mr-2">
-                                                        <i class="fas fa-check"></i>
-                                                        Save Change</button>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times"></i>
-                                                        Cancel</button>
-                                                </td>
-                                                <td>
-                                                    <div class="alert alert-success" role="alert" hidden>
-                                                        Test Kit Updated!
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Swab Test Kit Stock</th>
-                                                <td>
-                                                    <div style="width: 50%; margin: 0 auto;">
-                                                        <input type="number" value="11" min="0" max="100" step="1"
-                                                            name="swab" />
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-sm mr-2">
-                                                        <i class="fas fa-check"></i>
-                                                        Save Change</button>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times"></i>
-                                                        Cancel</button>
-                                                </td>
-                                                <td>
-                                                    <div class="alert alert-success" role="alert" hidden>
-                                                        Test Kit Updated!
-                                                    </div>
+                                                <th scope="row">931039139102</th>
+                                                <td colspan="2">Valterri James</td>
+                                                <td>Rapid Test</td>
+                                                <td>3/25/2021</td>
+                                                <td></td>
+                                                <td colspan="2" class="text-center">
+                                                    <button type="button" class="btn btn-success btn-sm">
+                                                        <i class="fas fa-heartbeat"></i>
+                                                        Returnee</button>
+                                                    <button type="button" class="btn btn-secondary btn-sm">
+                                                        <i class="fas fa-people-arrows"></i>
+                                                        Close Contact</button>
+                                                    <button type="button" class="btn btn-info btn-sm">
+                                                        <i class="fas fa-house-user"></i>
+                                                        Quarantined</button>
+                                                    <button type="button" class="btn btn-warning btn-sm">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                        Suspected</button>
+                                                    <button type="button" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-virus"></i>
+                                                        Infected</button>
                                                 </td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">PCR Test Kit Stock</th>
-                                                <td>
-                                                    <div style="width: 50%; margin: 0 auto;">
-                                                        <input type="number" value="8" min="0" max="100" step="1"
-                                                            name="pcr" />
-                                                    </div>
+                                                <th scope="row">931039139103</th>
+                                                <td colspan="2">Mattia Binotto</td>
+                                                <td>Swab Test</td>
+                                                <td>4/1/2021</td>
+                                                <td></td>
+                                                <td colspan="2" class="text-center">
+                                                    <button type="button" class="btn btn-success btn-sm">
+                                                        <i class="fas fa-heartbeat"></i>
+                                                        Returnee</button>
+                                                    <button type="button" class="btn btn-secondary btn-sm">
+                                                        <i class="fas fa-people-arrows"></i>
+                                                        Close Contact</button>
+                                                    <button type="button" class="btn btn-info btn-sm">
+                                                        <i class="fas fa-house-user"></i>
+                                                        Quarantined</button>
+                                                    <button type="button" class="btn btn-warning btn-sm">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                        Suspected</button>
+                                                    <button type="button" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-virus"></i>
+                                                        Infected</button>
                                                 </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-sm mr-2">
-                                                        <i class="fas fa-check"></i>
-                                                        Save Change</button>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times"></i>
-                                                        Cancel</button>
-                                                </td>
-                                                <td>
-                                                    <div class="alert alert-success" role="alert" hidden>
-                                                        Test Kit Updated!
-                                                    </div>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">931039139104</th>
+                                                <td colspan="2">Lando Norris</td>
+                                                <td>PCR Test</td>
+                                                <td>4/4/2021</td>
+                                                <td></td>
+                                                <td colspan="2" class="text-center">
+                                                    <button type="button" class="btn btn-success btn-sm">
+                                                        <i class="fas fa-heartbeat"></i>
+                                                        Returnee</button>
+                                                    <button type="button" class="btn btn-secondary btn-sm">
+                                                        <i class="fas fa-people-arrows"></i>
+                                                        Close Contact</button>
+                                                    <button type="button" class="btn btn-info btn-sm">
+                                                        <i class="fas fa-house-user"></i>
+                                                        Quarantined</button>
+                                                    <button type="button" class="btn btn-warning btn-sm">
+                                                        <i class="fas fa-exclamation-triangle"></i>
+                                                        Suspected</button>
+                                                    <button type="button" class="btn btn-danger btn-sm">
+                                                        <i class="fas fa-virus"></i>
+                                                        Infected</button>
                                                 </td>
                                             </tr>
                                         </tbody>
@@ -333,9 +273,6 @@
                             </div>
                         </div>
                     </div>
-
-
-
                     <!-- Content Row -->
                     <div class="row">
 
@@ -402,12 +339,6 @@
             <!-- Page level custom scripts -->
             <script src="/js/demo/chart-area-demo.js"></script>
             <script src="/js/demo/chart-pie-demo.js"></script>
-
-            <script src="/js/numberInput.js"></script>
-            <script>
-                $("input[type='number']").inputSpinner();
-
-            </script>
 
 </body>
 

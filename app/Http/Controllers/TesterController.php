@@ -11,9 +11,29 @@ class TesterController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
+    public function dashboard()
     {
-        return view('tester.index');
+        return view('tester.dashboard');
+    }
+
+    public function registerPatient()
+    {
+        return view('tester.registerPatient');
+    }
+
+    public function approveTestRequest()
+    {
+        return view('tester.approveTestRequest');
+    }
+
+    public function updateTestResult()
+    {
+        return view('tester.updateTestResult');
+    }
+    
+    public function viewTestingHistory()
+    {
+        return view('tester.viewTestingHistory');
     }
 
     /**

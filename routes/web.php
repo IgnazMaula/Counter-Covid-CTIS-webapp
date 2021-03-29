@@ -20,23 +20,23 @@ Route::get('/', function () {
 
 Auth::routes();
 
-// Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-
 Route::get('/patient/dashboard', 'App\Http\Controllers\PatientController@dashboard')->name('patientDashboard')->middleware('patient');
 Route::get('/patient/bookTestSchedule', 'App\Http\Controllers\PatientController@bookTestSchedule')->name('bookTestSchedule')->middleware('patient');
-Route::get('/patient/viewTestingHistory', 'App\Http\Controllers\PatientController@viewTestingHistory')->name('viewTestingHistory')->middleware('patient');
+Route::get('/patient/viewTestingHistory', 'App\Http\Controllers\PatientController@viewTestingHistory')->name('patientViewTestingHistory')->middleware('patient');
 
-
+Route::get('/tester/dashboard', 'App\Http\Controllers\TesterController@dashboard')->name('testerDashboard')->middleware('tester');
+Route::get('/tester/registerPatient', 'App\Http\Controllers\TesterController@registerPatient')->name('registerPatient')->middleware('tester');
+Route::get('/tester/approveTestRequest', 'App\Http\Controllers\TesterController@approveTestRequest')->name('approveTestRequest')->middleware('tester');
+Route::get('/tester/updateTestResult', 'App\Http\Controllers\TesterController@updateTestResult')->name('updateTestResult')->middleware('tester');
+Route::get('/tester/viewTestingHistory', 'App\Http\Controllers\TesterController@viewTestingHistory')->name('testerViewTestingHistory')->middleware('tester');
 
 Route::get('/manager/dashboard', 'App\Http\Controllers\ManagerController@dashboard')->name('managerDashboard')->middleware('manager');
 Route::get('/manager/registerTester', 'App\Http\Controllers\ManagerController@registerTester')->name('registerTester')->middleware('manager');
 Route::get('/manager/viewTesters', 'App\Http\Controllers\ManagerController@viewTesters')->name('viewTesters')->middleware('manager');
 Route::get('/manager/manageTestKit', 'App\Http\Controllers\ManagerController@manageTestKit')->name('manageTestKit')->middleware('manager');
-Route::get('/manager/viewTestingHistory', 'App\Http\Controllers\ManagerController@viewTestingHistory')->name('viewTestingHistory')->middleware('manager');
+Route::get('/manager/viewTestingHistory', 'App\Http\Controllers\ManagerController@viewTestingHistory')->name('managerViewTestingHistory')->middleware('manager');
 
 
-Route::get('/tester', 'TesterController@index')->name('tester')->middleware('tester');
 
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');

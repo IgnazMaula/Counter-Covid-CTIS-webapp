@@ -47,7 +47,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('patientDashboard') }}">
+                <a class="nav-link" href="{{ route('testerDashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -57,18 +57,27 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Patient Menu
+                Tester Menu
             </div>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('bookTestSchedule') }}">
-                    <i class="fas fa-fw fa-book-medical"></i>
-                    <span>Book Test Schedule</span></a>
+                <a class="nav-link" href="{{ route('registerPatient') }}">
+                    <i class="fas fas fa-user-plus"></i>
+                    <span>Register Patient</span></a>
             </li>
-
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('patientViewTestingHistory') }}">
+                <a class="nav-link" href="{{ route('approveTestRequest') }}">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Approve Test Request</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('updateTestResult') }}">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>Update Test Result</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('testerViewTestingHistory') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>View Testing History</span></a>
             </li>
@@ -133,32 +142,23 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        Welcome
-                                        @if (Auth::user()->gender == 'male')
-                                            Mr.
-                                        @elseif (Auth::user()->gender == 'female')
-                                            Ms.
-                                        @endif
-                                        <strong>{{ Auth::user()->name }}</strong>
+                                        Welcome Mr. <strong>Kimi Raikkonen</strong>
                                     </span>
-                                    <img src="https://img.icons8.com/color/48/ffffff/pharmacistmen.png" />
+                                    <img src="https://img.icons8.com/color/48/ffffff/nurse-male.png" />
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
 
-                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
-                                    document.getElementById('logout-form').submit();">
+                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        {{ __('Logout') }}
+                                        Logout
                                     </a>
-                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
-                                        class="d-none">
-                                        @csrf
-                                    </form>
                                 </div>
                             </li>
-                        </ul>
+
+                            </>
+
                 </nav>
                 <!-- End of Topbar -->
 
@@ -167,7 +167,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Patient Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tester Dashboard</h1>
                     </div>
 
                     <!-- Content Row -->
@@ -180,9 +180,8 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Patient Name</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                {{ Auth::user()->name }}</div>
+                                                Tester Name</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Kimi Raikkonen</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -199,12 +198,12 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Current Status</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
-                                                {{ Auth::user()->currentStatus }}</div>
+                                                Assigned Test Center</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Test Center 1 - Corpo
+                                                Plaza</div>
                                         </div>
                                         <div class="col-auto">
-                                            <i class="fas fa-first-aid fa-2x text-gray-300"></i>
+                                            <i class="fas fa-hospital-user fa-2x text-gray-300"></i>
                                         </div>
                                     </div>
                                 </div>
@@ -219,7 +218,7 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Covid-19
-                                                Test Taken
+                                                Test Given
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
@@ -242,7 +241,7 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Pending Requests</div>
+                                                Test Waiting for Approval</div>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
                                         </div>
                                         <div class="col-auto">
@@ -272,63 +271,19 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Name</th>
-                                                <td>{{ Auth::user()->name }}</td>
+                                                <td>Kimi Raikkonen</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Email</th>
-                                                <td>{{ Auth::user()->email }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Birth Date</th>
-                                                <td>{{ Auth::user()->birthDate }}</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Gender</th>
-                                                <td>
-                                                    @if (Auth::user()->gender == 'male')
-                                                        Male
-                                                    @elseif (Auth::user()->gender == 'female')
-                                                        Female
-                                                    @endif
-                                                </td>
+                                                <td>kimiraikkonen@gmail.com</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Role</th>
-                                                <td>Patient</td>
+                                                <td>Tester</td>
                                             </tr>
                                             <tr>
-                                                <th scope="row">Current Status</th>
-                                                <td>
-                                                    @if (Auth::user()->currentStatus == 'Returnee')
-                                                        <span class="badge badge-success" style="font-size: 18px;">
-                                                            <i class="fas fa-heartbeat"></i>
-                                                        @elseif (Auth::user()->currentStatus == 'Quarantined')
-                                                            <span class="badge badge-info" style="font-size: 18px;">
-                                                                <i class="fas fa-house-user"></i>
-                                                            @elseif (Auth::user()->currentStatus == 'Close
-                                                                Contact')
-                                                                <span class="badge badge-secondary"
-                                                                    style="font-size: 18px;">
-                                                                    <i class="fas fa-people-arrows"></i>
-                                                                @elseif (Auth::user()->currentStatus ==
-                                                                    'Suspected')
-                                                                    <span class="badge badge-warning"
-                                                                        style="font-size: 18px;">
-                                                                        <i class="fas fa-exclamation-triangle"></i>
-                                                                    @elseif (Auth::user()->currentStatus ==
-                                                                        'Infected')
-                                                                        <span class="badge badge-danger"
-                                                                            style="font-size: 18px;">
-                                                                            <i class="fas fa-virus"></i>
-                                                                        @else
-                                                                            <span class="badge badge-dark"
-                                                                                style="font-size: 18px;">
-                                                                                <i class="fas fa-times"></i>
-                                                    @endif
-
-                                                    {{ Auth::user()->currentStatus }}
-                                                    </span>
-                                                </td>
+                                                <th scope="row">Assigned Test Center</th>
+                                                <td>Test Center 1 - Corpo Plaza</td>
                                             </tr>
 
                                         </tbody>
@@ -343,55 +298,30 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">Your Latest Covid-19 Test</h6>
+                                    <h6 class="m-0 font-weight-bold text-dark">Covid-19 Test Kit Supply</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    @if (Auth::user()->currentStatus != 'Not Tested')
-                                        <table ble class="table table-borderless">
-                                            <tbody>
-                                                <tr>
-                                                    <th scope="row">Test ID</th>
-                                                    <td>Valterri James</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Test Date</th>
-                                                    <td>2021/3/3</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Test Center</th>
-                                                    <td>1995/10/2</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Responsible Tester</th>
-                                                    <td>Toto Wolff</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Test Status</th>
-                                                    <td>Done</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Result</th>
-                                                    <td>
-                                                        <span class="badge badge-success" style="font-size: 18px;">
-                                                            <i class="fas fa-heartbeat"></i>
-                                                            Returnee
-                                                        </span>
-                                                </tr>
-
-                                            </tbody>
-                                        </table>
-                                    @else
-                                        <div
-                                            style="height:308px; width:90%; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
-                                            <h4 class="text-center"><i
-                                                    class="fas fa-times fa-5x text-gray-300"></i><br><br>
-                                                <strong>You haven't take any test yet!</strong>
-                                            </h4>
-                                        </div>
-
-
-                                    @endif
+                                    <table ble class="table table-borderless">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row">Rapid Test Kit</th>
+                                                <td>16 Units</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">Swab Test Kit</th>
+                                                <td>27 Units</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row">PCR Test Kit</th>
+                                                <td>11 Units</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><br></th>
+                                                <td><br></td>
+                                            </tr>
+                                        </tbody>
+                                    </table>
                                 </div>
                             </div>
                         </div>
@@ -405,13 +335,16 @@
                     </div>
                     <!-- End of Main Content -->
 
+
+
                 </div>
                 <!-- End of Content Wrapper -->
 
             </div>
             <!-- End of Page Wrapper -->
+
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white" style="margin-top: 280px;">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Counter-Covid CTIS 2021</span>
@@ -419,6 +352,7 @@
                 </div>
             </footer>
             <!-- End of Footer -->
+
             <!-- Scroll to Top Button-->
             <a class="scroll-to-top rounded" href="#page-top">
                 <i class="fas fa-angle-up"></i>
@@ -465,28 +399,3 @@
 </body>
 
 </html>
-
-{{-- @extends('layouts.app')
-
-@section('content')
-    <div class="container">
-        <div class="row justify-content-center">
-            <div class="col-md-8">
-                <div class="card">
-                    <div class="card-header">{{ __('Dashboard') }}</div>
-
-                    <div class="card-body">
-                        @if (session('status'))
-                            <div class="alert alert-success" role="alert">
-                                {{ session('status') }}
-                            </div>
-                        @endif
-
-                        {{ __('You are logged in! as Patient') }}
-                        <a href="{{ route('test') }}">Click Here!</a>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-@endsection --}}
