@@ -384,10 +384,16 @@
                                     @else
                                         <div
                                             style="height:308px; width:90%; display: flex; justify-content: center; align-items: center; margin: 0 auto;">
-                                            <h4 class="text-center"><i
-                                                    class="fas fa-times fa-5x text-gray-300"></i><br><br>
-                                                <strong>You haven't take any test yet!</strong>
+                                            <h4 class="text-center"><i class="fas fa-times fa-5x text-gray-300"></i><br>
+                                                <strong>You haven't take any test yet!</strong><br><br>
+                                                <a href="{{ route('bookTestSchedule') }}">
+                                                    <button class="btn btn-danger">
+                                                        <i class="fas fa-book-medical"></i>
+                                                        Book Test Now</button>
+                                                </a>
+
                                             </h4>
+
                                         </div>
 
 

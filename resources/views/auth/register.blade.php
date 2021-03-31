@@ -66,7 +66,7 @@
                             <div class="col-sm-6">
                                 <label for="lastName">{{ __('Last Name') }}</label>
                                 <input type="text" class="form-control" id="lastName" name="lastName"
-                                    placeholder="last name" value="{{ old('lastName') }}" required autofocus>
+                                    placeholder="last name" value="{{ old('lastName') }}" required>
                                 {{-- @error('name')
                                     <span class="invalid-feedback" role="alert">
                                         <strong>{{ $message }}</strong>
@@ -129,7 +129,7 @@
 
                         <button class="w-100 btn btn-danger btn-lg" type="submit">{{ __('Register Now') }}</button>
                         <br><br>
-                        <a href="index.html">
+                        <a href="/">
                             <button class="w-100 btn btn-outline-secondary btn-lg"
                                 type="button">{{ __('Back to Main Page') }}</button>
                         </a>

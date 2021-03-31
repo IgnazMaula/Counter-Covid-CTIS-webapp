@@ -75,7 +75,7 @@
                     <span>Book Test Schedule</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('viewTestingHistory') }}">
+                <a class="nav-link" href="{{ route('patientViewTestingHistory') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>View Testing History</span></a>
             </li>

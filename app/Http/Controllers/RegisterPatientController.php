@@ -3,37 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
-class TesterController extends Controller
+class RegisterPatientController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function index()
     {
-        return view('tester.dashboard');
-    }
-
-    // public function registerPatient()
-    // {
-    //     return view('tester.registerPatient');
-    // }
-
-    public function approveTestRequest()
-    {
-        return view('tester.approveTestRequest');
-    }
-
-    public function updateTestResult()
-    {
-        return view('tester.updateTestResult');
-    }
-    
-    public function viewTestingHistory()
-    {
-        return view('tester.viewTestingHistory');
+        return view('tester.registerPatient'); 
     }
 
     /**
@@ -53,8 +35,30 @@ class TesterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'lastName' => ['string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'birthDate' => ['required', 'string', 'max:255'],
+        ]);
+        
+        $user = new User;
+
+        $name = $request->name . ' ' . $request->lastName;
+
+        $user->name = $name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->birthDate = $request->birthDate;
+        $user->gender = $request->gender;
+
+        $user->save();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+        
     }
 
     /**

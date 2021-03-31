@@ -25,10 +25,12 @@ Route::get('/patient/bookTestSchedule', 'App\Http\Controllers\PatientController@
 Route::get('/patient/viewTestingHistory', 'App\Http\Controllers\PatientController@viewTestingHistory')->name('patientViewTestingHistory')->middleware('patient');
 
 Route::get('/tester/dashboard', 'App\Http\Controllers\TesterController@dashboard')->name('testerDashboard')->middleware('tester');
-Route::get('/tester/registerPatient', 'App\Http\Controllers\TesterController@registerPatient')->name('registerPatient')->middleware('tester');
+Route::get('/tester/registerPatient', 'App\Http\Controllers\RegisterPatientController@index')->name('registerPatient')->middleware('tester');
 Route::get('/tester/approveTestRequest', 'App\Http\Controllers\TesterController@approveTestRequest')->name('approveTestRequest')->middleware('tester');
 Route::get('/tester/updateTestResult', 'App\Http\Controllers\TesterController@updateTestResult')->name('updateTestResult')->middleware('tester');
 Route::get('/tester/viewTestingHistory', 'App\Http\Controllers\TesterController@viewTestingHistory')->name('testerViewTestingHistory')->middleware('tester');
+
+Route::post('/tester/registerPatient', 'App\Http\Controllers\RegisterPatientController@store')->name('registerPatient')->middleware('tester');
 
 Route::get('/manager/dashboard', 'App\Http\Controllers\ManagerController@dashboard')->name('managerDashboard')->middleware('manager');
 Route::get('/manager/registerTester', 'App\Http\Controllers\ManagerController@registerTester')->name('registerTester')->middleware('manager');

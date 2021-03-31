@@ -154,10 +154,15 @@
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
 
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
+                                        {{ __('Logout') }}
                                     </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
                             </li>
 
@@ -186,73 +191,86 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body pl-5" style="width: 70%;">
-                                    <form class="needs-validation" novalidate="">
+
+                                    <form class="needs-validation" novalidate="" method="POST"
+                                        action="{{ route('registerPatient') }}">
+                                        @csrf
                                         <div class="row g-3">
+                                            {{-- First Name --}}
                                             <div class="col-sm-6">
-                                                <label for="firstName" class="form-label">Patient's First name</label>
-                                                <input type="text" class="form-control" id="firstName"
-                                                    placeholder="first Name" value="" required="">
-                                                <div class="invalid-feedback">
-                                                    Valid first name is required.
-                                                </div>
+                                                <label for="firstName">{{ __('First Name') }}</label>
+                                                <input type="text" class="form-control" id="firstName" name="name"
+                                                    placeholder="first name" value="{{ old('firstName') }}" required
+                                                    autofocus>
+                                                {{-- @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror --}}
                                             </div>
-                                            <br><br><br><br>
+                                            {{-- Last Name --}}
                                             <div class="col-sm-6">
-                                                <label for="lastName" class="form-label">Patient's Last name</label>
-                                                <input type="text" class="form-control" id="lastName"
-                                                    placeholder="last Name" value="" required="">
-                                                <div class="invalid-feedback">
-                                                    Valid last name is required.
-                                                </div>
+                                                <label for="lastName">{{ __('Last Name') }}</label>
+                                                <input type="text" class="form-control" id="lastName" name="lastName"
+                                                    placeholder="last name" value="{{ old('lastName') }}" required>
+                                                {{-- @error('name')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror --}}
                                             </div>
-                                            <br><br><br><br>
+                                            {{-- Email --}}
                                             <div class="col-12">
-                                                <label for="email" class="form-label">Patient's Email <span
-                                                        class="text-muted"></span></label>
-                                                <input type="email" class="form-control" id="email"
-                                                    placeholder="patient@example.com">
-                                                <div class="invalid-feedback">
-                                                    Please enter a valid email address for shipping updates.
-                                                </div>
+                                                <label for="email"
+                                                    class="form-label">{{ __('E-Mail Address') }}</label>
+                                                <input type="email"
+                                                    class="form-control @error('email') is-invalid @enderror" id="email"
+                                                    name="email" placeholder="youremail@example.com"
+                                                    value="{{ old('email') }}" required>
+                                                @error('email')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
-                                            <br><br><br><br>
+                                            {{-- Password --}}
                                             <div class="col-12">
-                                                <label for="password" class="form-label">Password</label>
-                                                <input type="password" class="form-control" id="password"
-                                                    placeholder="password" required="">
-                                                <div class="invalid-feedback">
-                                                    Please enter your password.
-                                                </div>
+                                                <label for="password" class="form-label">{{ __('Password') }}</label>
+                                                <input type="password"
+                                                    class="form-control @error('password') is-invalid @enderror"
+                                                    id="password" name="password" required>
+                                                @error('password')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
-                                            <br><br><br><br>
+                                            {{-- Confirm Password --}}
                                             <div class="col-12">
-                                                <label for="retypePassword" class="form-label">Retype Password</label>
-                                                <input type="password" class="form-control" id="retypePassword"
-                                                    placeholder="retype password" required="">
-                                                <div class="invalid-feedback">
-                                                    Please enter your password.
-                                                </div>
+                                                <label for="password-confirm"
+                                                    class="form-label">{{ __('Confirm Password') }}</label>
+                                                <input id="password-confirm" type="password" class="form-control"
+                                                    name="password_confirmation" required>
                                             </div>
-                                            <br><br><br><br>
+                                            {{-- Birth Date --}}
                                             <div class="col-6 mt-3 pe-5" id="sandbox-container">
-                                                <label for="birthdate" class="form-label">Patient's Birthdate</label>
-                                                <input type="text" class="form-control" id="birthdate"
-                                                    placeholder="mm/dd/yyyy" required="">
-                                                <div class="invalid-feedback">
-                                                    Please enter your password.
-                                                </div>
+                                                <label for="birthDate"
+                                                    class="form-label">{{ __('Birth Date') }}</label>
+                                                <input type="text" class="form-control" id="birthDate" name="birthDate"
+                                                    placeholder="mm/dd/yyyy" value="{{ old('birthDate') }}" required>
                                             </div>
+                                            {{-- Gender --}}
                                             <div class="col-6 mt-3 ps-5">
-                                                <label for="address" class="form-label">Patient's Gender</label>
+                                                <label for="gender" class="form-label">{{ __('Gender') }}</label>
                                                 <div class="form-check">
-                                                    <input id="male" name="gender" type="radio" class="form-check-input"
-                                                        checked="" required="">
-                                                    <label class="form-check-label" for="male">Male</label>
+                                                    <input id="gender" name="gender" type="radio"
+                                                        class="form-check-input" value="male" checked="" required="">
+                                                    <label class="form-check-label">Male</label>
                                                 </div>
                                                 <div class="form-check">
-                                                    <input id="female" name="gender" type="radio"
-                                                        class="form-check-input" required="">
-                                                    <label class="form-check-label" for="female">Female</label>
+                                                    <input id="gender" name="gender" type="radio"
+                                                        class="form-check-input" value="female" required="">
+                                                    <label class="form-check-label">Female</label>
                                                 </div>
                                             </div>
 

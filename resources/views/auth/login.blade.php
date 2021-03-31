@@ -72,7 +72,8 @@
                 </div>
             </div>
             <button class="w-100 btn btn-lg btn-danger mb-3" type="submit">{{ __('Login') }}</button>
-            <a href="index.html"><button class="w-100 btn btn-lg btn-outline-secondary mb-5" type="button">Back to Main
+            <a href="/"><button class="w-100 btn btn-lg btn-outline-secondary mb-5" type="button">Back
+                    to Main
                     Page</button></a>
             &copy; 2021 Copyright <strong>Counter-Covid CTIS</strong>
         </form>

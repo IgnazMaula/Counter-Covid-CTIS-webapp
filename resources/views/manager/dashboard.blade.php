@@ -77,7 +77,7 @@
                     <span>Manage Test Kit<i class="fas fa-kite    "></i></span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('viewTestingHistory') }}">
+                <a class="nav-link" href="{{ route('managerViewTestingHistory') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>View Testing History</span></a>
             </li>
@@ -151,10 +151,15 @@
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
                                     aria-labelledby="userDropdown">
 
-                                    <a class="dropdown-item" href="#" data-toggle="modal" data-target="#logoutModal">
+                                    <a class="dropdown-item" href="{{ route('logout') }}" onclick="event.preventDefault();
+                                    document.getElementById('logout-form').submit();">
                                         <i class="fas fa-sign-out-alt fa-sm fa-fw mr-2 text-gray-400"></i>
-                                        Logout
+                                        {{ __('Logout') }}
                                     </a>
+                                    <form id="logout-form" action="{{ route('logout') }}" method="POST"
+                                        class="d-none">
+                                        @csrf
+                                    </form>
                                 </div>
                             </li>
 
