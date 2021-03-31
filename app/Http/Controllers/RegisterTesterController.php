@@ -3,44 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 
-class ManagerController extends Controller
+class RegisterTesterController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function index()
     {
-        return view('manager.dashboard');
+        return view('manager.registerTester'); 
     }
 
-    public function registerTestCenter()
-    {
-        return view('manager.registerTestCenter');
-    }
-
-    public function registerTester()
-    {
-        return view('manager.registerTester');
-    }
-
-    public function viewTesters()
-    {
-        return view('manager.viewTesters');
-    }
-
-    public function manageTestKit()
-    {
-        return view('manager.manageTestKit');
-    }
-    
-    public function viewTestingHistory()
-    {
-        return view('manager.viewTestingHistory');
-    }
-    
     /**
      * Show the form for creating a new resource.
      *
@@ -58,8 +35,31 @@ class ManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'lastName' => ['string', 'max:255'],
+            'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
+            'password' => ['required', 'string', 'min:8', 'confirmed'],
+            'birthDate' => ['required', 'string', 'max:255'],
+        ]);
+        
+        $user = new User;
+
+        $name = $request->name . ' ' . $request->lastName;
+
+        $user->name = $name;
+        $user->email = $request->email;
+        $user->password = Hash::make($request->password);
+        $user->birthDate = $request->birthDate;
+        $user->gender = $request->gender;
+        $user->role = "tester";
+            
+        $user->save();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+        
     }
 
     /**

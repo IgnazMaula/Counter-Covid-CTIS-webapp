@@ -3,44 +3,20 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TestCenter;
 
-class ManagerController extends Controller
+class RegisterTestCenterController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
+    public function index()
     {
-        return view('manager.dashboard');
+        //
     }
 
-    public function registerTestCenter()
-    {
-        return view('manager.registerTestCenter');
-    }
-
-    public function registerTester()
-    {
-        return view('manager.registerTester');
-    }
-
-    public function viewTesters()
-    {
-        return view('manager.viewTesters');
-    }
-
-    public function manageTestKit()
-    {
-        return view('manager.manageTestKit');
-    }
-    
-    public function viewTestingHistory()
-    {
-        return view('manager.viewTestingHistory');
-    }
-    
     /**
      * Show the form for creating a new resource.
      *
@@ -59,7 +35,19 @@ class ManagerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $validatedData = $request->validate([
+            'name' => ['required', 'string', 'max:255'],
+            'location' => ['required', 'string', 'max:255'],
+        ]);
+        
+        $testCenter = new TestCenter;
+
+        $testCenter->name = $request->name;
+        $testCenter->location = $request->location;
+
+        $testCenter->save();
+        
+        return response()->json(['success'=>'Data is successfully added']);
     }
 
     /**

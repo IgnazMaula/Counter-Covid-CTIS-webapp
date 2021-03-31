@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Counter-Covid CTIS - Register Patient</title>
+    <title>Counter-Covid CTIS - Register Test Center</title>
 
     <!-- Icon -->
     <link rel="icon" href="/images/favicon.webp">
@@ -19,10 +19,6 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
-
-    <!-- Date Picker -->
-    <link rel="stylesheet" type="text/css"
-        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css" />
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
@@ -49,41 +45,20 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('testerDashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Tester Menu
+                Manager Menu
             </div>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('registerPatient') }}">
-                    <i class="fas fas fa-user-plus"></i>
-                    <span>Register Patient</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('approveTestRequest') }}">
-                    <i class="fas fa-fw fa-book-medical"></i>
-                    <span>Approve Test Request</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('updateTestResult') }}">
-                    <i class="fas fa-fw fa-tasks"></i>
-                    <span>Update Test Result</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('testerViewTestingHistory') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>View Testing History</span></a>
+                <a class="nav-link" href="{{ route('registerTester') }}">
+                    <i class="fas fa-hospital"></i>
+                    <span>Register Test Center</span></a>
             </li>
 
             <!-- Divider -->
@@ -146,9 +121,9 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        Welcome Mr. <strong>Kimi Raikkonen</strong>
+                                        Welcome Mr. <strong>Toto Wolff</strong>
                                     </span>
-                                    <img src="https://img.icons8.com/color/48/ffffff/nurse-male.png" />
+                                    <img src="https://img.icons8.com/color/48/ffffff/manager.png" />
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -176,7 +151,7 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Tester Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Manager Dashboard</h1>
                     </div>
 
                     <div class="row">
@@ -187,97 +162,30 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">Register Patient</h6>
+                                    <h6 class="m-0 font-weight-bold text-dark">Register Test Center</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body pl-5" style="width: 70%;">
-
                                     <form class="needs-validation" novalidate="" method="POST"
-                                        action="{{ route('registerPatient') }}">
+                                        action="{{ route('registerTestCenter') }}">
                                         @csrf
                                         <div class="row g-3">
                                             {{-- First Name --}}
-                                            <div class="col-sm-6">
-                                                <label for="firstName">{{ __('First Name') }}</label>
-                                                <input type="text" class="form-control" id="firstName" name="name"
-                                                    placeholder="first name" value="{{ old('firstName') }}" required
-                                                    autofocus>
-                                                {{-- @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror --}}
+                                            <div class="col-12">
+                                                <label for="name">{{ __('Test Center Name') }}</label>
+                                                <input type="text" class="form-control" id="name" name="name"
+                                                    placeholder="test center name" value="{{ old('testCenterName') }}"
+                                                    required autofocus>
+                                                <br>
                                             </div>
-                                            {{-- Last Name --}}
-                                            <div class="col-sm-6">
-                                                <label for="lastName">{{ __('Last Name') }}</label>
-                                                <input type="text" class="form-control" id="lastName" name="lastName"
-                                                    placeholder="last name" value="{{ old('lastName') }}" required>
-                                                {{-- @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror --}}
-                                            </div>
-                                            <br><br><br><br>
                                             {{-- Email --}}
                                             <div class="col-12">
-                                                <label for="email"
-                                                    class="form-label">{{ __('E-Mail Address') }}</label>
-                                                <input type="email"
-                                                    class="form-control @error('email') is-invalid @enderror" id="email"
-                                                    name="email" placeholder="youremail@example.com"
-                                                    value="{{ old('email') }}" required>
-                                                @error('email')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
+                                                <label for="location">{{ __('Test Center Location') }}</label>
+                                                <input type="text" class="form-control" id="location" name="location"
+                                                    placeholder="test center location"
+                                                    value="{{ old('testCenterLocation') }}" required>
+                                                <br>
                                             </div>
-                                            <br><br><br><br>
-                                            {{-- Password --}}
-                                            <div class="col-12">
-                                                <label for="password" class="form-label">{{ __('Password') }}</label>
-                                                <input type="password"
-                                                    class="form-control @error('password') is-invalid @enderror"
-                                                    id="password" name="password" required>
-                                                @error('password')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                            </div>
-                                            <br><br><br><br>
-                                            {{-- Confirm Password --}}
-                                            <div class="col-12">
-                                                <label for="password-confirm"
-                                                    class="form-label">{{ __('Confirm Password') }}</label>
-                                                <input id="password-confirm" type="password" class="form-control"
-                                                    name="password_confirmation" required>
-                                            </div>
-                                            <br><br><br><br>
-                                            {{-- Birth Date --}}
-                                            <div class="col-6 mt-3 pe-5" id="sandbox-container">
-                                                <label for="birthDate"
-                                                    class="form-label">{{ __('Birth Date') }}</label>
-                                                <input type="text" class="form-control" id="birthDate" name="birthDate"
-                                                    placeholder="mm/dd/yyyy" value="{{ old('birthDate') }}" required>
-                                            </div>
-                                            {{-- Gender --}}
-                                            <div class="col-6 mt-3 ps-5">
-                                                <label for="gender" class="form-label">{{ __('Gender') }}</label>
-                                                <div class="form-check">
-                                                    <input id="gender" name="gender" type="radio"
-                                                        class="form-check-input" value="male" checked="" required="">
-                                                    <label class="form-check-label">Male</label>
-                                                </div>
-                                                <div class="form-check">
-                                                    <input id="gender" name="gender" type="radio"
-                                                        class="form-check-input" value="female" required="">
-                                                    <label class="form-check-label">Female</label>
-                                                </div>
-                                            </div>
-
                                         </div>
 
                                         <hr class="my-4">
@@ -300,7 +208,7 @@
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
                                     <h6 class="m-0 font-weight-bold text-dark">
                                         <i class="fas fa-info-circle"></i>
-                                        Register Patient
+                                        Register Test Center
                                     </h6>
                                 </div>
                                 <!-- Card Body -->
@@ -322,6 +230,9 @@
                     <!-- End of Main Content -->
 
 
+
+
+
                 </div>
                 <!-- End of Content Wrapper -->
 
@@ -329,7 +240,7 @@
             <!-- End of Page Wrapper -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white" style="margin-top: 280px;">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Counter-Covid CTIS 2021</span>
@@ -371,7 +282,6 @@
             <!-- Core plugin JavaScript-->
             <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-
             <!-- Custom scripts for all pages-->
             <script src="/js/sb-admin-2.min.js"></script>
 
@@ -382,45 +292,6 @@
             <script src="/js/demo/chart-area-demo.js"></script>
             <script src="/js/demo/chart-pie-demo.js"></script>
 
-            <!-- JQuerry -->
-            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
-                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
-                crossorigin="anonymous">
-            </script>
-
-            <!-- Datepicker -->
-            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js">
-            </script>
-            <!-- Datepicker -->
-            <script>
-                $('#sandbox-container input').datepicker({
-                    autoclose: true
-                });
-
-                $('#sandbox-container input').on('show', function(e) {
-                    console.debug('show', e.date, $(this).data('stickyDate'));
-
-                    if (e.date) {
-                        $(this).data('stickyDate', e.date);
-                    } else {
-                        $(this).data('stickyDate', null);
-                    }
-                });
-
-                $('#sandbox-container input').on('hide', function(e) {
-                    console.debug('hide', e.date, $(this).data('stickyDate'));
-                    var stickyDate = $(this).data('stickyDate');
-
-                    if (!e.date && stickyDate) {
-                        console.debug('restore stickyDate', stickyDate);
-                        $(this).datepicker('setDate', stickyDate);
-                        $(this).data('stickyDate', null);
-                    }
-                });
-
-            </script>
-
 </body>
 
 </html>
-/

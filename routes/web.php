@@ -32,12 +32,15 @@ Route::get('/tester/viewTestingHistory', 'App\Http\Controllers\TesterController@
 
 Route::post('/tester/registerPatient', 'App\Http\Controllers\RegisterPatientController@store')->name('registerPatient')->middleware('tester');
 
+Route::get('/manager/registerTestCenter', 'App\Http\Controllers\ManagerController@registerTestCenter')->name('registerTestCenter')->middleware('manager');
 Route::get('/manager/dashboard', 'App\Http\Controllers\ManagerController@dashboard')->name('managerDashboard')->middleware('manager');
 Route::get('/manager/registerTester', 'App\Http\Controllers\ManagerController@registerTester')->name('registerTester')->middleware('manager');
 Route::get('/manager/viewTesters', 'App\Http\Controllers\ManagerController@viewTesters')->name('viewTesters')->middleware('manager');
 Route::get('/manager/manageTestKit', 'App\Http\Controllers\ManagerController@manageTestKit')->name('manageTestKit')->middleware('manager');
 Route::get('/manager/viewTestingHistory', 'App\Http\Controllers\ManagerController@viewTestingHistory')->name('managerViewTestingHistory')->middleware('manager');
 
+Route::post('/manager/registerTestCenter', 'App\Http\Controllers\RegisterTestCenterController@store')->name('registerTestCenter')->middleware('manager');
+Route::post('/manager/registerTester', 'App\Http\Controllers\RegisterTesterController@store')->name('registerTester')->middleware('manager');
 
 
 
