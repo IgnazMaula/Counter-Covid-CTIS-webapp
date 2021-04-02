@@ -15,7 +15,7 @@ class RegisterTesterController extends Controller
      */
     public function index()
     {
-        return view('manager.registerTester'); 
+
     }
 
     /**
@@ -55,6 +55,7 @@ class RegisterTesterController extends Controller
         $user->birthDate = $request->birthDate;
         $user->gender = $request->gender;
         $user->role = "tester";
+        $user->testCenter = $request->user()['testCenter'];
             
         $user->save();
         

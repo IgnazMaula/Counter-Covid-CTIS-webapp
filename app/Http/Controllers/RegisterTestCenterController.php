@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\TestCenter;
+use App\Models\User;
 
 class RegisterTestCenterController extends Controller
 {
@@ -44,10 +45,19 @@ class RegisterTestCenterController extends Controller
 
         $testCenter->name = $request->name;
         $testCenter->location = $request->location;
-
+        $testCenter->manager_id = $request->manager_id;
+        
+        // $request->user()['testCenter'] = $request->name;
+        User::where('id', $request->user()['id'])->update([
+            'testCenter' => $request->name
+        ]);
+        
         $testCenter->save();
         
-        return response()->json(['success'=>'Data is successfully added']);
+        //$request->user()['testCenter'] = $request->name;
+
+        // return response()->json(['success'=>'Data is successfully added' . $request->user()['testCenter']] . $user->name);
+        return view('manager.assignTestCenter');
     }
 
     /**

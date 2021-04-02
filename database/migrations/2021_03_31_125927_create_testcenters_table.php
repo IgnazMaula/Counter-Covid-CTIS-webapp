@@ -17,6 +17,7 @@ class CreateTestcentersTable extends Migration
             $table->id();
             $table->string('name')->unique();
             $table->string('location');
+            $table->integer('manager_id');
         });
     }
 

@@ -121,7 +121,13 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        Welcome Mr. <strong>Toto Wolff</strong>
+                                        Welcome
+                                        @if (Auth::user()->gender == 'male')
+                                            Mr.
+                                        @elseif (Auth::user()->gender == 'female')
+                                            Ms.
+                                        @endif
+                                        <strong>{{ Auth::user()->name }}</strong>
                                     </span>
                                     <img src="https://img.icons8.com/color/48/ffffff/manager.png" />
                                 </a>
@@ -169,6 +175,8 @@
                                     <form class="needs-validation" novalidate="" method="POST"
                                         action="{{ route('registerTestCenter') }}">
                                         @csrf
+                                        <input type="hidden" id="manager_id" name="manager_id"
+                                            value="{{ Auth::user()->id }}">
                                         <div class="row g-3">
                                             {{-- First Name --}}
                                             <div class="col-12">
@@ -191,7 +199,7 @@
                                         <hr class="my-4">
 
                                         <button class="w-100 btn btn-danger btn-lg" type="submit">Register
-                                            Patient</button>
+                                            Test Center</button>
                                         <br><br>
                                         <button class="w-100 btn btn-outline-secondary btn-lg" type="reset">
                                             Reset</button>

@@ -38,6 +38,7 @@ Route::get('/manager/registerTester', 'App\Http\Controllers\ManagerController@re
 Route::get('/manager/viewTesters', 'App\Http\Controllers\ManagerController@viewTesters')->name('viewTesters')->middleware('manager');
 Route::get('/manager/manageTestKit', 'App\Http\Controllers\ManagerController@manageTestKit')->name('manageTestKit')->middleware('manager');
 Route::get('/manager/viewTestingHistory', 'App\Http\Controllers\ManagerController@viewTestingHistory')->name('managerViewTestingHistory')->middleware('manager');
+Route::get('/manager/assignTestCenter', 'App\Http\Controllers\ManagerController@assignTestCenter')->name('assignTestCenter')->middleware('manager');
 
 Route::post('/manager/registerTestCenter', 'App\Http\Controllers\RegisterTestCenterController@store')->name('registerTestCenter')->middleware('manager');
 Route::post('/manager/registerTester', 'App\Http\Controllers\RegisterTesterController@store')->name('registerTester')->middleware('manager');

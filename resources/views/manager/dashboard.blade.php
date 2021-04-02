@@ -143,7 +143,13 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        Welcome Mr. <strong>Toto Wolff</strong>
+                                        Welcome
+                                        @if (Auth::user()->gender == 'male')
+                                            Mr.
+                                        @elseif (Auth::user()->gender == 'female')
+                                            Ms.
+                                        @endif
+                                        <strong>{{ Auth::user()->name }}</strong>
                                     </span>
                                     <img src="https://img.icons8.com/color/48/ffffff/manager.png" />
                                 </a>
@@ -187,7 +193,8 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Manager Name</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Toto Wolff</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ Auth::user()->name }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -205,8 +212,8 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Assigned Test Center</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Test Center 1 - Corpo
-                                                Plaza</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ Auth::user()->testCenter }}</div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-hospital-user fa-2x text-gray-300"></i>
@@ -276,11 +283,11 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Name</th>
-                                                <td>Toto Wolff</td>
+                                                <td>{{ Auth::user()->name }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Email</th>
-                                                <td>totowolff@gmail.com</td>
+                                                <td>{{ Auth::user()->email }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Role</th>
@@ -288,7 +295,7 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Assigned Test Center</th>
-                                                <td>Test Center 1 - Corpo Plaza</td>
+                                                <td>{{ Auth::user()->testCenter }}</td>
                                             </tr>
 
                                         </tbody>
@@ -309,22 +316,26 @@
                                 <div class="card-body">
                                     <table ble class="table table-borderless">
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">Test Center Name</th>
-                                                <td>Test Center 1 - Corpo Plaza</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Test Center ID</th>
-                                                <td>0000242</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Test Center Address</th>
-                                                <td>Sandygate, 18, Hallam Chase, Sheffield, S10 5SW</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Registered Tester</th>
-                                                <td>18</td>
-                                            </tr>
+                                            @foreach ($testCenter as $key => $data)
+                                                @if ($data->name == Auth::user()->testCenter)
+                                                    <tr>
+                                                        <th scope="row">Test Center Name</th>
+                                                        <td> {{ $data->name }} </td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Test Center ID</th>
+                                                        <td>{{ $data->id }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Test Center Address</th>
+                                                        <td>{{ $data->location }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Registered Tester</th>
+                                                        <td>18</td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

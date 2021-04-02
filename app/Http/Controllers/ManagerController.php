@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class ManagerController extends Controller
 {
@@ -12,8 +13,10 @@ class ManagerController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function dashboard()
-    {
-        return view('manager.dashboard');
+    {   
+        $testCenter = DB::table('testcenters')->get();
+
+        return view('manager.dashboard',  ['testCenter' => $testCenter] );
     }
 
     public function registerTestCenter()
@@ -39,6 +42,11 @@ class ManagerController extends Controller
     public function viewTestingHistory()
     {
         return view('manager.viewTestingHistory');
+    }
+
+    public function assignTestCenter()
+    {
+        return view('manager.assignTestCenter');
     }
     
     /**

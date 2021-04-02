@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Counter-Covid CTIS - Update Test Result</title>
+    <title>Counter-Covid CTIS - Register Test Center</title>
 
     <!-- Icon -->
     <link rel="icon" href="/images/favicon.webp">
@@ -45,41 +45,20 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
-            <!-- Nav Item - Dashboard -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('testerDashboard') }}">
-                    <i class="fas fa-fw fa-tachometer-alt"></i>
-                    <span>Dashboard</span></a>
-            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Tester Menu
+                Manager Menu
             </div>
 
             <!-- Nav Item - Charts -->
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('registerPatient') }}">
-                    <i class="fas fas fa-user-plus"></i>
-                    <span>Register Patient</span></a>
-            </li>
-            <li class="nav-item ">
-                <a class="nav-link" href="{{ route('approveTestRequest') }}">
-                    <i class="fas fa-fw fa-book-medical"></i>
-                    <span>Approve Test Request</span></a>
-            </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('updateTestResult') }}">
-                    <i class="fas fa-fw fa-tasks"></i>
-                    <span>Update Test Result</span></a>
-            </li>
-            <li class="nav-item">
-                <a class="nav-link" href="{{ route('testerViewTestingHistory') }}">
-                    <i class="fas fa-fw fa-table"></i>
-                    <span>View Testing History</span></a>
+                <a class="nav-link" href="{{ route('registerTester') }}">
+                    <i class="fas fa-hospital"></i>
+                    <span>Register Test Center</span></a>
             </li>
 
             <!-- Divider -->
@@ -150,7 +129,7 @@
                                         @endif
                                         <strong>{{ Auth::user()->name }}</strong>
                                     </span>
-                                    <img src="https://img.icons8.com/color/48/ffffff/nurse-male.png" />
+                                    <img src="https://img.icons8.com/color/48/ffffff/manager.png" />
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -178,117 +157,56 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Tester Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Manager Dashboard</h1>
                     </div>
-
 
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-lg-12">
+                        <div class="col-xl-8 col-lg-7">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">Incoming Test Request</h6>
+                                    <h6 class="m-0 font-weight-bold text-dark">Register Test Center</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body pl-5" style="width: 70%;">
+                                    <h1>Success</h1>
+                                </div>
+                            </div>
+                        </div>
+
+                        <!-- Pie Chart -->
+                        <div class="col-xl-4 col-lg-5">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-dark">
+                                        <i class="fas fa-info-circle"></i>
+                                        Register Test Center
+                                    </h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Test ID</th>
-                                                <th scope="col" colspan="2">Patient Name</th>
-                                                <th scope="col">Test Type</th>
-                                                <th scope="col">Test Date</th>
-                                                <th scope="col"></th>
-                                                <th scope="col" class="text-center">Set Patient Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">931039139102</th>
-                                                <td colspan="2">Valterri James</td>
-                                                <td>Rapid Test</td>
-                                                <td>3/25/2021</td>
-                                                <td></td>
-                                                <td colspan="2" class="text-center">
-                                                    <button type="button" class="btn btn-success btn-sm">
-                                                        <i class="fas fa-heartbeat"></i>
-                                                        Returnee</button>
-                                                    <button type="button" class="btn btn-secondary btn-sm">
-                                                        <i class="fas fa-people-arrows"></i>
-                                                        Close Contact</button>
-                                                    <button type="button" class="btn btn-info btn-sm">
-                                                        <i class="fas fa-house-user"></i>
-                                                        Quarantined</button>
-                                                    <button type="button" class="btn btn-warning btn-sm">
-                                                        <i class="fas fa-exclamation-triangle"></i>
-                                                        Suspected</button>
-                                                    <button type="button" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-virus"></i>
-                                                        Infected</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">931039139103</th>
-                                                <td colspan="2">Mattia Binotto</td>
-                                                <td>Swab Test</td>
-                                                <td>4/1/2021</td>
-                                                <td></td>
-                                                <td colspan="2" class="text-center">
-                                                    <button type="button" class="btn btn-success btn-sm">
-                                                        <i class="fas fa-heartbeat"></i>
-                                                        Returnee</button>
-                                                    <button type="button" class="btn btn-secondary btn-sm">
-                                                        <i class="fas fa-people-arrows"></i>
-                                                        Close Contact</button>
-                                                    <button type="button" class="btn btn-info btn-sm">
-                                                        <i class="fas fa-house-user"></i>
-                                                        Quarantined</button>
-                                                    <button type="button" class="btn btn-warning btn-sm">
-                                                        <i class="fas fa-exclamation-triangle"></i>
-                                                        Suspected</button>
-                                                    <button type="button" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-virus"></i>
-                                                        Infected</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">931039139104</th>
-                                                <td colspan="2">Lando Norris</td>
-                                                <td>PCR Test</td>
-                                                <td>4/4/2021</td>
-                                                <td></td>
-                                                <td colspan="2" class="text-center">
-                                                    <button type="button" class="btn btn-success btn-sm">
-                                                        <i class="fas fa-heartbeat"></i>
-                                                        Returnee</button>
-                                                    <button type="button" class="btn btn-secondary btn-sm">
-                                                        <i class="fas fa-people-arrows"></i>
-                                                        Close Contact</button>
-                                                    <button type="button" class="btn btn-info btn-sm">
-                                                        <i class="fas fa-house-user"></i>
-                                                        Quarantined</button>
-                                                    <button type="button" class="btn btn-warning btn-sm">
-                                                        <i class="fas fa-exclamation-triangle"></i>
-                                                        Suspected</button>
-                                                    <button type="button" class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-virus"></i>
-                                                        Infected</button>
-                                                </td>
-                                            </tr>
-                                        </tbody>
-                                    </table>
+                                    <p>
+                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus
+                                        tempore fugit illo quod laborum nemo maxime? Delectus minima deserunt quasi eum
+                                        atque porro ea enim doloremque, placeat praesentium?
+                                    </p>
                                 </div>
                             </div>
                         </div>
                     </div>
+
                     <!-- Content Row -->
                     <div class="row">
 
                     </div>
                     <!-- End of Main Content -->
+
+
 
 
 

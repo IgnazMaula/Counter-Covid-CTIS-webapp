@@ -37,9 +37,16 @@ class LoginController extends Controller
                 return $this->redirectTo;
                 break;
             case 'manager':
-                $this->redirectTo = '/manager/dashboard';
-                return $this->redirectTo;
-                break;
+                if(Auth::user()->testCenter != NULL) {
+                    $this->redirectTo = '/manager/dashboard';
+                    return $this->redirectTo;
+                    break;
+                }
+                else {
+                    $this->redirectTo = '/manager/registerTestCenter';
+                    return $this->redirectTo;
+                    break;
+                }
             case 'tester':
                 $this->redirectTo = '/tester/dashboard';
                 return $this->redirectTo;

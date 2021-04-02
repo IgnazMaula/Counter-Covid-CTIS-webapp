@@ -143,7 +143,13 @@
                                 <a class="nav-link dropdown-toggle" href="#" id="userDropdown" role="button"
                                     data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                                     <span class="mr-2 d-none d-lg-inline text-gray-600 small">
-                                        Welcome Mr. <strong>Toto Wolff</strong>
+                                        Welcome
+                                        @if (Auth::user()->gender == 'male')
+                                            Mr.
+                                        @elseif (Auth::user()->gender == 'female')
+                                            Ms.
+                                        @endif
+                                        <strong>{{ Auth::user()->name }}</strong>
                                     </span>
                                     <img src="https://img.icons8.com/color/48/ffffff/manager.png" />
                                 </a>
