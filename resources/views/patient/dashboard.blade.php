@@ -223,7 +223,19 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">2</div>
+                                                    @php
+                                                        $testTaken = 0;
+                                                    @endphp
+                                                    @foreach ($covidTests as $key => $data)
+                                                        @if ($data->status == 'Completed')
+                                                            @php
+                                                                $testTaken += 1;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        {{ $testTaken }}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -242,8 +254,21 @@
                                     <div class="row no-gutters align-items-center">
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
-                                                Pending Requests</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                                Pending Requests
+                                            </div>
+                                            @php
+                                                $pending = 0;
+                                            @endphp
+                                            @foreach ($covidTests as $key => $data)
+                                                @if ($data->status == 'Wait for Approval' and $data->patientName == Auth::user()->name)
+                                                    @php
+                                                        $pending += 1;
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ $pending }}
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>
@@ -347,38 +372,63 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body">
-                                    @if (Auth::user()->currentStatus != 'Not Tested')
+                                    @php
+                                        $latestIndex = 0;
+                                    @endphp
+                                    @foreach ($covidTests as $key => $data)
+                                        @if ($data->patientName == Auth::user()->name)
+                                            @if ($data->id > $latestIndex)
+                                                @php
+                                                    $latestIndex = $data->id;
+                                                @endphp
+                                            @endif
+                                        @endif
+                                    @endforeach
+                                    @if ($latestIndex > 0)
                                         <table ble class="table table-borderless">
                                             <tbody>
-                                                <tr>
-                                                    <th scope="row">Test ID</th>
-                                                    <td>Valterri James</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Test Date</th>
-                                                    <td>2021/3/3</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Test Center</th>
-                                                    <td>1995/10/2</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Responsible Tester</th>
-                                                    <td>Toto Wolff</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Test Status</th>
-                                                    <td>Done</td>
-                                                </tr>
-                                                <tr>
-                                                    <th scope="row">Result</th>
-                                                    <td>
-                                                        <span class="badge badge-success" style="font-size: 18px;">
-                                                            <i class="fas fa-heartbeat"></i>
-                                                            Returnee
-                                                        </span>
-                                                </tr>
-
+                                                @foreach ($covidTests as $ct)
+                                                    @if ($ct->id == $latestIndex)
+                                                        <tr>
+                                                            <th scope="row">Test ID</th>
+                                                            <td>{{ $ct->id }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Test Date</th>
+                                                            <td>{{ $ct->date }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Test Center</th>
+                                                            <td>{{ $ct->testCenter }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Responsible Tester</th>
+                                                            <td>
+                                                                @if ($ct->testerName != null)
+                                                                    {{ $ct->testerName }}
+                                                                @else
+                                                                    {{ '<Not Confirmed>' }}
+                                                                @endif
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Test Type</th>
+                                                            <td>{{ $ct->testType }}</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <th scope="row">Test Status</th>
+                                                            @if ($ct->status != 'Wait for Approval')
+                                                                <td>
+                                                                    {{ $ct->status . ' (' . $ct->result . ')' }}
+                                                                </td>
+                                                            @else
+                                                                <td>
+                                                                    {{ $ct->status }}
+                                                                </td>
+                                                            @endif
+                                                        </tr>
+                                                    @endif
+                                                @endforeach
                                             </tbody>
                                         </table>
                                     @else

@@ -3,29 +3,19 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use App\Models\CovidTest;
+use Illuminate\Support\Facades\Hash;
 
-class PatientController extends Controller
+class BookTestScheduleController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
-    {   
-        $covidTests = DB::table('covid_tests')->get();
-        return view('patient.dashboard', ['covidTests' => $covidTests]);
-    }
+    public function index()
+    {
 
-    public function bookTestSchedule() {
-        $testCenter = DB::table('testcenters')->get();
-
-        return view('patient.bookTestSchedule',  ['testCenter' => $testCenter] );
-    }
-    
-    public function viewTestingHistory() {
-        return view('patient.viewTestingHistory');
     }
 
     /**
@@ -45,8 +35,26 @@ class PatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function store(Request $request)
-    {
-        //
+    {   
+
+        $validatedData = $request->validate([
+            'date' => ['required', 'string', 'max:255'],
+        ]);
+        
+        $test = new CovidTest;
+
+        $test->patientName = $request->patientName;
+        $test->email = $request->email;
+        $test->testCenter = $request->testCenter;
+        $test->testType = $request->testType;
+        $test->date = $request->date;
+        $test->symptoms = $request->symptoms;
+        $test->status = "Wait for Approval";
+            
+        $test->save();
+        
+        return response()->json(['success'=>'Data is successfully added']);
+        
     }
 
     /**

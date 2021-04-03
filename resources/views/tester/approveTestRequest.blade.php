@@ -201,7 +201,7 @@
                                                 <th scope="col">Patient Name</th>
                                                 <th scope="col">Requested Test</th>
                                                 <th scope="col">Requested Date</th>
-                                                <th scope="col">Symptomps</th>
+                                                <th scope="col">symptoms</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
@@ -216,7 +216,7 @@
                                                     <button type="button" class="btn btn-info btn-sm"
                                                         data-toggle="modal" data-target="#exampleModal">
                                                         <i class="fas fa-book"></i>
-                                                        Read Symptoms
+                                                        Read symptoms
                                                     </button>
 
                                                     <!-- Modal -->
@@ -226,7 +226,7 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="exampleModalLabel">
-                                                                        Symptomps</h5>
+                                                                        symptoms</h5>
                                                                     <button type="button" class="close"
                                                                         data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -263,7 +263,7 @@
                                                     <button type="button" class="btn btn-info btn-sm"
                                                         data-toggle="modal" data-target="#exampleModal">
                                                         <i class="fas fa-book"></i>
-                                                        Read Symptoms
+                                                        Read symptoms
                                                     </button>
 
                                                     <!-- Modal -->
@@ -273,7 +273,7 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="exampleModalLabel">
-                                                                        Symptomps</h5>
+                                                                        symptoms</h5>
                                                                     <button type="button" class="close"
                                                                         data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>
@@ -310,7 +310,7 @@
                                                     <button type="button" class="btn btn-info btn-sm"
                                                         data-toggle="modal" data-target="#exampleModal">
                                                         <i class="fas fa-book"></i>
-                                                        Read Symptoms
+                                                        Read symptoms
                                                     </button>
 
                                                     <!-- Modal -->
@@ -320,7 +320,7 @@
                                                             <div class="modal-content">
                                                                 <div class="modal-header">
                                                                     <h5 class="modal-title" id="exampleModalLabel">
-                                                                        Symptomps</h5>
+                                                                        symptoms</h5>
                                                                     <button type="button" class="close"
                                                                         data-dismiss="modal" aria-label="Close">
                                                                         <span aria-hidden="true">&times;</span>

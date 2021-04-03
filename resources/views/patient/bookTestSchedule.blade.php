@@ -190,15 +190,16 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body pl-5" style="width: 70%;">
-                                    <form class="needs-validation" novalidate="">
+                                    <form class="needs-validation" novalidate="" method="POST"
+                                        action="{{ route('bookTestSchedule') }}">
+                                        @csrf
                                         <div class="row g-3">
 
                                             <div class="col-12">
                                                 <label for="name" class="form-label">Name</label>
                                                 <div class="input-group has-validation">
-                                                    <input type="text" class="form-control" id="name"
-                                                        placeholder="{{ Auth::user()->name }}" id="disableInput"
-                                                        disabled>
+                                                    <input type="text" class="form-control" id="name" name="patientName"
+                                                        value="{{ Auth::user()->name }}" id="disableInput" readonly>
                                                     <div class="invalid-feedback">
                                                         Your Name is required.
                                                     </div>
@@ -208,8 +209,8 @@
                                             <div class="col-12">
                                                 <label for="email" class="form-label">Email <span
                                                         class="text-muted"></span></label>
-                                                <input type="email" class="form-control" id="email" id="disableInput"
-                                                    placeholder="{{ Auth::user()->email }}" disabled>
+                                                <input type="text" class="form-control" id="email" name="email"
+                                                    value="{{ Auth::user()->email }}" id="disableInput" readonly>
                                                 <div class="invalid-feedback">
                                                     Please enter a valid email address for shipping updates.
                                                 </div>
@@ -218,28 +219,32 @@
                                             <div class="col-12">
                                                 <label for="testCenter" class="form-label">Select Test Center<span
                                                         class="text-muted"></span></label>
-                                                <select id="testCenter" class="form-control"
+                                                <select id="testCenter" class="form-control" name="testCenter"
                                                     aria-label="Default select example">
-                                                    <option value="1" selected>Test Center 1</option>
+                                                    @foreach ($testCenter as $key => $data)
+                                                        <option value="{{ $data->name }}"> {{ $data->name }}
+                                                        </option>
+                                                    @endforeach
+                                                    {{-- <option value="1" selected>Test Center 1</option>
                                                     <option value="2">Test Center 2</option>
-                                                    <option value="3">Test Center 3</option>
+                                                    <option value="3">Test Center 3</option> --}}
                                                 </select>
                                             </div>
                                             <br><br><br><br>
                                             <div class="col-12">
-                                                <label for="testType" class="form-label">Select Test Type<span
-                                                        class="text-muted"></span></label>
-                                                <select id="testType" class="form-control"
+                                                <label for="testType" class="form-label" name="testType">Select Test
+                                                    Type<span class="text-muted"></span></label>
+                                                <select id="testType" class="form-control" name="testType"
                                                     aria-label="Default select example">
-                                                    <option selected>Rapid Test</option>
-                                                    <option value="1">Swab Test</option>
-                                                    <option value="2">PCR Test</option>
+                                                    <option value="Rapid Test" selected>Rapid Test</option>
+                                                    <option value="Swab Test">Swab Test</option>
+                                                    <option value="PCR Test">PCR Test</option>
                                                 </select>
                                             </div>
                                             <br><br><br><br>
                                             <div class="col-12" id="sandbox-container">
-                                                <label for="birthdate" class="form-label">Requested Date</label>
-                                                <input type="text" class="form-control" id="birthdate"
+                                                <label for="date" class="form-label">Requested Date</label>
+                                                <input type="text" class="form-control" id="date" name="date"
                                                     placeholder="mm/dd/yyyy" required="">
                                                 <div class="invalid-feedback">
                                                     Please enter your date.
@@ -247,9 +252,10 @@
                                             </div>
                                             <br><br><br><br>
                                             <div class="col-12">
-                                                <label for="floatingTextarea2">Symptoms</label>
+                                                <label for="floatingTextarea2">symptoms</label>
                                                 <textarea class="form-control" placeholder="Describe your symptoms here"
-                                                    id="floatingTextarea2" style="height: 100px"></textarea>
+                                                    name="symptoms" id="floatingTextarea2"
+                                                    style="height: 100px"></textarea>
                                             </div>
 
                                         </div>

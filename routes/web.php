@@ -24,6 +24,8 @@ Route::get('/patient/dashboard', 'App\Http\Controllers\PatientController@dashboa
 Route::get('/patient/bookTestSchedule', 'App\Http\Controllers\PatientController@bookTestSchedule')->name('bookTestSchedule')->middleware('patient');
 Route::get('/patient/viewTestingHistory', 'App\Http\Controllers\PatientController@viewTestingHistory')->name('patientViewTestingHistory')->middleware('patient');
 
+Route::post('/patient/bookTestSchedule', 'App\Http\Controllers\BookTestScheduleController@store')->name('bookTestSchedule')->middleware('patient');
+
 Route::get('/tester/dashboard', 'App\Http\Controllers\TesterController@dashboard')->name('testerDashboard')->middleware('tester');
 Route::get('/tester/registerPatient', 'App\Http\Controllers\RegisterPatientController@index')->name('registerPatient')->middleware('tester');
 Route::get('/tester/approveTestRequest', 'App\Http\Controllers\TesterController@approveTestRequest')->name('approveTestRequest')->middleware('tester');
