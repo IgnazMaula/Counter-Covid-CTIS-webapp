@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use DB;
 
 class TesterController extends Controller
 {
@@ -12,8 +13,9 @@ class TesterController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function dashboard()
-    {
-        return view('tester.dashboard');
+    {   
+        $covidTests = DB::table('covid_tests')->get();
+        return view('tester.dashboard', ['covidTests' => $covidTests]);
     }
 
     // public function registerPatient()

@@ -192,7 +192,9 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Tester Name</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Kimi Raikkonen</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ Auth::user()->name }}
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-user fa-2x text-gray-300"></i>
@@ -210,8 +212,9 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Assigned Test Center</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">Test Center 1 - Corpo
-                                                Plaza</div>
+                                            <div class="h5 mb-0 font-weight-bold text-gray-800">
+                                                {{ Auth::user()->testCenter }}
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-hospital-user fa-2x text-gray-300"></i>
@@ -233,7 +236,19 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">2</div>
+                                                    @php
+                                                        $testGiven = 0;
+                                                    @endphp
+                                                    @foreach ($covidTests as $key => $data)
+                                                        @if ($data->testerName == Auth::user()->name and $data->status == 'Completed')
+                                                            @php
+                                                                $testGiven += 1;
+                                                            @endphp
+                                                        @endif
+                                                    @endforeach
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        {{ $testGiven }}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>
@@ -253,7 +268,19 @@
                                         <div class="col mr-2">
                                             <div class="text-xs font-weight-bold text-primary text-uppercase mb-1">
                                                 Test Waiting for Approval</div>
-                                            <div class="h5 mb-0 font-weight-bold text-gray-800">18</div>
+                                            @php
+                                                $wait = 0;
+                                            @endphp
+                                            @foreach ($covidTests as $key => $data)
+                                                @if ($data->status == 'Wait for Approval' and $data->testCenter == Auth::user()->testCenter)
+                                                    @php
+                                                        $wait += 1;
+                                                    @endphp
+                                                @endif
+                                            @endforeach
+                                            <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                {{ $wait }}
+                                            </div>
                                         </div>
                                         <div class="col-auto">
                                             <i class="fas fa-hourglass-half fa-2x text-gray-300"></i>
@@ -282,11 +309,11 @@
                                         <tbody>
                                             <tr>
                                                 <th scope="row">Name</th>
-                                                <td>Kimi Raikkonen</td>
+                                                <td>{{ Auth::user()->name }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Email</th>
-                                                <td>kimiraikkonen@gmail.com</td>
+                                                <td>{{ Auth::user()->email }}</td>
                                             </tr>
                                             <tr>
                                                 <th scope="row">Role</th>
@@ -294,7 +321,7 @@
                                             </tr>
                                             <tr>
                                                 <th scope="row">Assigned Test Center</th>
-                                                <td>Test Center 1 - Corpo Plaza</td>
+                                                <td>{{ Auth::user()->testCenter }}</td>
                                             </tr>
 
                                         </tbody>
