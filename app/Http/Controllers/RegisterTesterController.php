@@ -59,7 +59,7 @@ class RegisterTesterController extends Controller
             
         $user->save();
         
-        return response()->json(['success'=>'Data is successfully added']);
+        return view('manager.successRegisterTester', ['name' => $user->name]);
         
     }
 

@@ -48,6 +48,9 @@ class ManagerController extends Controller
     {
         return view('manager.assignTestCenter');
     }
+    public function success() {
+        return view('manager.registerTestCenterSuccess');
+    }
     
     /**
      * Show the form for creating a new resource.

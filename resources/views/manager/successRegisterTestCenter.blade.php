@@ -163,7 +163,7 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -171,67 +171,14 @@
                                     <h6 class="m-0 font-weight-bold text-dark">Register Test Center</h6>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body pl-5" style="width: 70%;">
-                                    <form class="needs-validation" novalidate="" method="POST"
-                                        action="{{ route('registerTestCenter') }}">
-                                        @csrf
-                                        <input type="hidden" id="manager_id" name="manager_id"
-                                            value="{{ Auth::user()->id }}">
-                                        <div class="row g-3">
-                                            {{-- Test Center Name --}}
-                                            <div class="col-12">
-                                                <label for="name">{{ __('Test Center Name') }}</label>
-                                                <input type="text"
-                                                    class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    name="name" placeholder="test center name"
-                                                    value="{{ old('name') }}" required autofocus>
-                                                @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                                <br>
-                                            </div>
-                                            {{-- Location --}}
-                                            <div class="col-12">
-                                                <label for="location">{{ __('Test Center Location') }}</label>
-                                                <input type="text" class="form-control" id="location" name="location"
-                                                    placeholder="test center location"
-                                                    value="{{ old('testCenterLocation') }}" required>
-                                                <br>
-                                            </div>
-                                        </div>
-
-                                        <hr class="my-4">
-
-                                        <button class="w-100 btn btn-danger btn-lg" type="submit">Register
-                                            Test Center</button>
-                                        <br><br>
-                                        <button class="w-100 btn btn-outline-secondary btn-lg" type="reset">
-                                            Reset</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">
-                                        <i class="fas fa-info-circle"></i>
-                                        Register Test Center
-                                    </h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus
-                                        tempore fugit illo quod laborum nemo maxime? Delectus minima deserunt quasi eum
-                                        atque porro ea enim doloremque, placeat praesentium?
-                                    </p>
+                                <div class="card-body pl-5 text-center">
+                                    <h2 class="mt-5 mb-5">Test Center Registered Successfully!</h2>
+                                    <h5 class="mb-4">You now assigned to <b>{{ $name }}</b></h5>
+                                    <a class="mb-5" href="{{ route('managerDashboard') }}"><button
+                                            class=" btn btn-success">
+                                            Go to My Dashboard
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

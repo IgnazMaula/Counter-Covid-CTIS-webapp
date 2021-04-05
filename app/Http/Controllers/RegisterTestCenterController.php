@@ -37,7 +37,7 @@ class RegisterTestCenterController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['required', 'string', 'max:255'],
+            'name' => ['unique:testcenters','required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
         ]);
         
@@ -53,11 +53,7 @@ class RegisterTestCenterController extends Controller
         ]);
         
         $testCenter->save();
-        
-        //$request->user()['testCenter'] = $request->name;
-
-        // return response()->json(['success'=>'Data is successfully added' . $request->user()['testCenter']] . $user->name);
-        return view('manager.assignTestCenter');
+        return view('manager.successRegisterTestCenter', ['name' => $testCenter->name]);
     }
 
     /**
