@@ -35,7 +35,8 @@
         <ul class="navbar-nav bg-gradient-primary sidebar sidebar-dark accordion" id="accordionSidebar">
 
             <!-- Sidebar - Brand -->
-            <a class="sidebar-brand d-flex align-items-center justify-content-center" href="index.html">
+            <a class="sidebar-brand d-flex align-items-center justify-content-center"
+                href="{{ route('managerDashboard') }}">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-clinic-medical "></i>
                 </div>
@@ -57,8 +58,23 @@
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
                 <a class="nav-link" href="{{ route('registerTester') }}">
-                    <i class="fas fa-hospital"></i>
-                    <span>Register Test Center</span></a>
+                    <i class="fas fas fa-user-plus"></i>
+                    <span>Register Tester</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('viewTesters') }}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>View Testers</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('manageTestKit') }}">
+                    <i class="fas fa-fw fa-syringe"></i>
+                    <span>Manage Test Kit <i class="fas fa-kite    "></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('managerViewTestingHistory') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>View Testing History</span></a>
             </li>
 
             <!-- Divider -->
@@ -168,7 +184,7 @@
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">Register Test Center</h6>
+                                    <h6 class="m-0 font-weight-bold text-dark">Register Tester</h6>
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body pl-5 text-center">

@@ -57,7 +57,7 @@ class RegisterPatientController extends Controller
 
         $user->save();
         
-        return response()->json(['success'=>'Data is successfully added']);
+        return view('tester.successRegisterPatient');
         
     }
 

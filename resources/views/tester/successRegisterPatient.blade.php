@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Counter-Covid CTIS - Register Test Center</title>
+    <title>Counter-Covid CTIS - Register Patient</title>
 
     <!-- Icon -->
     <link rel="icon" href="/images/favicon.webp">
@@ -19,6 +19,10 @@
     <link
         href="https://fonts.googleapis.com/css?family=Nunito:200,200i,300,300i,400,400i,600,600i,700,700i,800,800i,900,900i"
         rel="stylesheet">
+
+    <!-- Date Picker -->
+    <link rel="stylesheet" type="text/css"
+        href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/css/datepicker3.css" />
 
     <!-- Custom styles for this template-->
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
@@ -36,7 +40,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('managerDashboard') }}">
+                href="{{ route('testerDashboard') }}">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-clinic-medical "></i>
                 </div>
@@ -46,20 +50,41 @@
             <!-- Divider -->
             <hr class="sidebar-divider my-0">
 
+            <!-- Nav Item - Dashboard -->
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('testerDashboard') }}">
+                    <i class="fas fa-fw fa-tachometer-alt"></i>
+                    <span>Dashboard</span></a>
+            </li>
 
             <!-- Divider -->
             <hr class="sidebar-divider">
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Manager Menu
+                Tester Menu
             </div>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('registerTester') }}">
-                    <i class="fas fa-hospital"></i>
-                    <span>Register Test Center</span></a>
+                <a class="nav-link" href="{{ route('registerPatient') }}">
+                    <i class="fas fas fa-user-plus"></i>
+                    <span>Register Patient</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('approveTestRequest') }}">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Approve Test Request</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('updateTestResult') }}">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>Update Test Result</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('testerViewTestingHistory') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>View Testing History</span></a>
             </li>
 
             <!-- Divider -->
@@ -130,7 +155,7 @@
                                         @endif
                                         <strong>{{ Auth::user()->name }}</strong>
                                     </span>
-                                    <img src="https://img.icons8.com/color/48/ffffff/manager.png" />
+                                    <img src="https://img.icons8.com/color/48/ffffff/nurse-male.png" />
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -158,81 +183,25 @@
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Manager Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tester Dashboard</h1>
                     </div>
 
                     <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">Register Test Center</h6>
+                                    <h6 class="m-0 font-weight-bold text-dark">Register Patient</h6>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body pl-5" style="width: 70%;">
-                                    <form class="needs-validation" novalidate="" method="POST"
-                                        action="{{ route('registerTestCenter') }}">
-                                        @csrf
-                                        <input type="hidden" id="manager_id" name="manager_id"
-                                            value="{{ Auth::user()->id }}">
-                                        <div class="row g-3">
-                                            {{-- Test Center Name --}}
-                                            <div class="col-12">
-                                                <label for="name">{{ __('Test Center Name') }}</label>
-                                                <input type="text"
-                                                    class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    name="name" placeholder="test center name"
-                                                    value="{{ old('name') }}" required autofocus>
-                                                @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                                <br>
-                                            </div>
-                                            {{-- Location --}}
-                                            <div class="col-12">
-                                                <label for="location">{{ __('Test Center Location') }}</label>
-                                                <input type="text" class="form-control" id="location" name="location"
-                                                    placeholder="test center location"
-                                                    value="{{ old('testCenterLocation') }}" required>
-                                                <br>
-                                            </div>
-                                        </div>
-
-                                        <hr class="my-4">
-
-                                        <button class="w-100 btn btn-danger btn-lg" type="submit">Register
-                                            Test Center</button>
-                                        <br><br>
-                                        <button class="w-100 btn btn-outline-secondary btn-lg" type="reset">
-                                            Reset</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">
-                                        <i class="fas fa-info-circle"></i>
-                                        Register Test Center
-                                    </h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus
-                                        tempore fugit illo quod laborum nemo maxime? Delectus minima deserunt quasi eum
-                                        atque porro ea enim doloremque, placeat praesentium?
-                                    </p>
+                                <div class="card-body pl-5 text-center">
+                                    <h2 class="mt-5 mb-5">Patient Registered Successfully!</h2>
+                                    <a class="mb-5" href="{{ route('testerDashboard') }}"><button
+                                            class=" btn btn-success">
+                                            Back to My Dashboard
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -245,9 +214,6 @@
                     <!-- End of Main Content -->
 
 
-
-
-
                 </div>
                 <!-- End of Content Wrapper -->
 
@@ -255,7 +221,7 @@
             <!-- End of Page Wrapper -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white" style="margin-top: 280px;">
+            <footer class="sticky-footer bg-white">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Counter-Covid CTIS 2021</span>
@@ -297,6 +263,7 @@
             <!-- Core plugin JavaScript-->
             <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
+
             <!-- Custom scripts for all pages-->
             <script src="/js/sb-admin-2.min.js"></script>
 
@@ -307,6 +274,45 @@
             <script src="/js/demo/chart-area-demo.js"></script>
             <script src="/js/demo/chart-pie-demo.js"></script>
 
+            <!-- JQuerry -->
+            <script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"
+                integrity="sha384-DfXdz2htPH0lsSSs5nCTpuj/zy4C+OGpamoFVy38MVBnE+IbbVYUew+OrCXaRkfj"
+                crossorigin="anonymous">
+            </script>
+
+            <!-- Datepicker -->
+            <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap-datepicker/1.3.0/js/bootstrap-datepicker.js">
+            </script>
+            <!-- Datepicker -->
+            <script>
+                $('#sandbox-container input').datepicker({
+                    autoclose: true
+                });
+
+                $('#sandbox-container input').on('show', function(e) {
+                    console.debug('show', e.date, $(this).data('stickyDate'));
+
+                    if (e.date) {
+                        $(this).data('stickyDate', e.date);
+                    } else {
+                        $(this).data('stickyDate', null);
+                    }
+                });
+
+                $('#sandbox-container input').on('hide', function(e) {
+                    console.debug('hide', e.date, $(this).data('stickyDate'));
+                    var stickyDate = $(this).data('stickyDate');
+
+                    if (!e.date && stickyDate) {
+                        console.debug('restore stickyDate', stickyDate);
+                        $(this).datepicker('setDate', stickyDate);
+                        $(this).data('stickyDate', null);
+                    }
+                });
+
+            </script>
+
 </body>
 
 </html>
+/

@@ -53,7 +53,7 @@ class BookTestScheduleController extends Controller
             
         $test->save();
         
-        return response()->json(['success'=>'Data is successfully added']);
+        return view('patient.successBookTestSchedule');
         
     }
 
