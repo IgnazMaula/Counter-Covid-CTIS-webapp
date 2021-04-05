@@ -133,6 +133,8 @@
                             <button class="w-100 btn btn-outline-secondary btn-lg"
                                 type="button">{{ __('Back to Main Page') }}</button>
                         </a>
+                        <p class="text-center mt-5">Already have account? <b><a href="/login">Login Now</a></b>
+                        </p>
                     </form>
                 </div>
             </div>

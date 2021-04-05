@@ -27,10 +27,6 @@ class CreateUsersTable extends Migration
 
             //Tester and Manager
             $table->string('testCenter')->nullable();
-
-            // $table->rememberToken();
-            // $table->timestamp('email_verified_at')->nullable();
-            // $table->timestamps();
         });
     }
 

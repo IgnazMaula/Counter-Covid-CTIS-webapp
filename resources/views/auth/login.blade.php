@@ -52,7 +52,6 @@
             <div>
                 <input id="password" type="password" class="form-control @error('password') is-invalid @enderror"
                     name="password" placeholder="Password" required autocomplete="current-password">
-
                 @error('password')
                     <span class="invalid-feedback" role="alert">
                         <strong>{{ $message }}</strong>
@@ -62,19 +61,13 @@
             <div class="form-group row">
                 <div class="col-md-6 offset-md-3 my-2">
                     <div class="form-check">
-                        <input class="form-check-input" type="checkbox" name="remember" id="remember"
-                            {{ old('remember') ? 'checked' : '' }}>
-
-                        <label class="form-check-label" for="remember">
-                            {{ __('Remember Me') }}
-                        </label>
                     </div>
                 </div>
             </div>
             <button class="w-100 btn btn-lg btn-danger mb-3" type="submit">{{ __('Login') }}</button>
-            <a href="/"><button class="w-100 btn btn-lg btn-outline-secondary mb-5" type="button">Back
-                    to Main
-                    Page</button></a>
+            <a href="/"><button class="w-100 btn btn-lg btn-outline-secondary mb-5" type="button">
+                    Back to Main Page</button></a>
+            <p>Not have account yet? <b><a href="/register">Register Now</a></b></p>
             &copy; 2021 Copyright <strong>Counter-Covid CTIS</strong>
         </form>
     </main>

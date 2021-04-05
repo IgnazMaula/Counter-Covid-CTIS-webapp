@@ -229,9 +229,9 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus
-                                        tempore fugit illo quod laborum nemo maxime? Delectus minima deserunt quasi eum
-                                        atque porro ea enim doloremque, placeat praesentium?
+                                        You haven't register your test center yet. please provide the detail of your
+                                        test center and register it. Once it register you will automatically assigned to
+                                        this test center and you will able to manage your test center from the dashboard
                                     </p>
                                 </div>
                             </div>
