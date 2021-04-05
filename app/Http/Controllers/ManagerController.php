@@ -15,8 +15,8 @@ class ManagerController extends Controller
     public function dashboard()
     {   
         $testCenter = DB::table('test_centers')->get();
-
-        return view('manager.dashboard',  ['testCenter' => $testCenter] );
+        $tester = DB::table('users')->get();
+        return view('manager.dashboard',  ['testCenter' => $testCenter], ['tester' => $tester]);
     }
 
     public function registerTestCenter()
