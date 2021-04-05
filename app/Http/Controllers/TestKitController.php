@@ -3,55 +3,21 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use DB;
+use App\Models\TestCenter;
+use App\Models\TestKit;
 
-class ManagerController extends Controller
+class TestKitController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function dashboard()
-    {   
-        $testCenter = DB::table('test_centers')->get();
-
-        return view('manager.dashboard',  ['testCenter' => $testCenter] );
+    public function index()
+    {
+        //
     }
 
-    public function registerTestCenter()
-    {
-        return view('manager.registerTestCenter');
-    }
-
-    public function registerTester()
-    {
-        return view('manager.registerTester');
-    }
-
-    public function viewTesters()
-    {
-        return view('manager.viewTesters');
-    }
-
-    public function manageTestKit()
-    {
-        return view('manager.manageTestKit');
-    }
-    
-    public function viewTestingHistory()
-    {
-        return view('manager.viewTestingHistory');
-    }
-
-    public function assignTestCenter()
-    {
-        return view('manager.assignTestCenter');
-    }
-    public function success() {
-        return view('manager.registertest_centersuccess');
-    }
-    
     /**
      * Show the form for creating a new resource.
      *
@@ -70,7 +36,23 @@ class ManagerController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        // $validatedData = $request->validate([
+        //     'name' => ['unique:test_centers','required', 'string', 'max:255'],
+        //     'location' => ['required', 'string', 'max:255'],
+        // ]);
+        
+        $testCenter = new TestCenter;
+
+        $testCenter->name = $request->name;
+        $testCenter->location = $request->location;
+        
+        // Assign the test center into manager who registered it
+        User::where('id', $request->user()['id'])->update([
+            'testCenter' => $request->name
+        ]);
+        
+        $testCenter->save();
+        return view('manager.successRegisterTestCenter', ['name' => $testCenter->name]);
     }
 
     /**

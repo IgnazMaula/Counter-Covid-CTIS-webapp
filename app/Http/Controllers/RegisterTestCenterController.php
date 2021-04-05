@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use App\Models\TestCenter;
 use App\Models\User;
+use App\Models\TestKit;
 
 class RegisterTestCenterController extends Controller
 {
@@ -37,7 +38,7 @@ class RegisterTestCenterController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['unique:testcenters','required', 'string', 'max:255'],
+            'name' => ['unique:test_centers','required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
         ]);
         
@@ -45,14 +46,23 @@ class RegisterTestCenterController extends Controller
 
         $testCenter->name = $request->name;
         $testCenter->location = $request->location;
-        $testCenter->manager_id = $request->manager_id;
         
-        // $request->user()['testCenter'] = $request->name;
+        // Assign the test center into manager who registered it
         User::where('id', $request->user()['id'])->update([
             'testCenter' => $request->name
         ]);
         
         $testCenter->save();
+
+        $testKit = new TestKit;
+
+        $testKit->center_id = $testCenter->id;
+        $testKit->rapidStock = $request->rapidStock;
+        $testKit->swabStock = $request->swabStock;
+        $testKit->pcrStock = $request->pcrStock;
+        
+        $testKit->save();
+
         return view('manager.successRegisterTestCenter', ['name' => $testCenter->name]);
     }
 

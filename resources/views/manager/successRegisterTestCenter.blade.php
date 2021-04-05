@@ -36,7 +36,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('managerDashboard') }}">
+                href="{{ route('registerTestCenter') }}">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-clinic-medical "></i>
                 </div>
@@ -57,7 +57,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('registerTester') }}">
+                <a class="nav-link" href="{{ route('registerTestCenter') }}">
                     <i class="fas fa-hospital"></i>
                     <span>Register Test Center</span></a>
             </li>

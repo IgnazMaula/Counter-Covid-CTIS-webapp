@@ -19,7 +19,7 @@ class PatientController extends Controller
     }
 
     public function bookTestSchedule() {
-        $testCenter = DB::table('testcenters')->get();
+        $testCenter = DB::table('test_centers')->get();
 
         return view('patient.bookTestSchedule',  ['testCenter' => $testCenter] );
     }

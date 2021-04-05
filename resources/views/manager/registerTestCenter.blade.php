@@ -36,7 +36,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('managerDashboard') }}">
+                href="{{ route('registerTestCenter') }}">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-clinic-medical "></i>
                 </div>
@@ -57,7 +57,7 @@
 
             <!-- Nav Item - Charts -->
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('registerTester') }}">
+                <a class="nav-link" href="{{ route('registerTestCenter') }}">
                     <i class="fas fa-hospital"></i>
                     <span>Register Test Center</span></a>
             </li>
@@ -176,8 +176,6 @@
                                     <form class="needs-validation" novalidate="" method="POST"
                                         action="{{ route('registerTestCenter') }}">
                                         @csrf
-                                        <input type="hidden" id="manager_id" name="manager_id"
-                                            value="{{ Auth::user()->id }}">
                                         <div class="row g-3">
                                             {{-- Test Center Name --}}
                                             <div class="col-12">
@@ -200,6 +198,57 @@
                                                     placeholder="test center location"
                                                     value="{{ old('testCenterLocation') }}" required>
                                                 <br>
+                                            </div>
+                                            {{-- Test Kit Stock --}}
+                                            <div class="col-12 mt-4">
+                                                <label for="testStock"
+                                                    class="mb-4"><b>{{ __('Initialize Test Kit Stock') }}</b></label>
+                                                <table ble class="table table-borderless">
+                                                    <tbody>
+                                                        <tr>
+                                                            <td scope="row">Rapid Test Kit Stock</td>
+                                                            <td>
+                                                                <div style="width: 50%; margin: 0 auto;">
+                                                                    <input type="number" value="20" min="0" max="100"
+                                                                        step="1" name="rapidStock" />
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="alert alert-success" role="alert" hidden>
+                                                                    Test Kit Updated!
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td scope="row">Swab Test Kit Stock</td>
+                                                            <td>
+                                                                <div style="width: 50%; margin: 0 auto;">
+                                                                    <input type="number" value="20" min="0" max="100"
+                                                                        step="1" name="swabStock" />
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="alert alert-success" role="alert" hidden>
+                                                                    Test Kit Updated!
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td scope="row">PCR Test Kit Stock</td>
+                                                            <td>
+                                                                <div style="width: 50%; margin: 0 auto;">
+                                                                    <input type="number" value="20" min="0" max="100"
+                                                                        step="1" name="pcrStock" />
+                                                                </div>
+                                                            </td>
+                                                            <td>
+                                                                <div class="alert alert-success" role="alert" hidden>
+                                                                    Test Kit Updated!
+                                                                </div>
+                                                            </td>
+                                                        </tr>
+                                                    </tbody>
+                                                </table>
                                             </div>
                                         </div>
 
@@ -306,6 +355,12 @@
             <!-- Page level custom scripts -->
             <script src="/js/demo/chart-area-demo.js"></script>
             <script src="/js/demo/chart-pie-demo.js"></script>
+
+            <script src="/js/numberInput.js"></script>
+            <script>
+                $("input[type='number']").inputSpinner();
+
+            </script>
 
 </body>
 

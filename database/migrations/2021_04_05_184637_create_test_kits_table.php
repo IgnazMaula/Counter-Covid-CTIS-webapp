@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateTestcentersTable extends Migration
+class CreateTestKitsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,10 +13,12 @@ class CreateTestcentersTable extends Migration
      */
     public function up()
     {
-        Schema::create('test_centers', function (Blueprint $table) {
+        Schema::create('test_kits', function (Blueprint $table) {
             $table->id();
-            $table->string('name')->unique();
-            $table->string('location');
+            $table->integer('center_id');
+            $table->integer('rapidStock');
+            $table->integer('swabStock');
+            $table->integer('pcrStock');
         });
     }
 
@@ -27,6 +29,6 @@ class CreateTestcentersTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('test_centers');
+        Schema::dropIfExists('test_kits');
     }
 }
