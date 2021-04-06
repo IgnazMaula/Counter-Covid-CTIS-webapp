@@ -214,9 +214,6 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <div class="alert alert-success" role="alert" hidden>
-                                                                    Test Kit Updated!
-                                                                </div>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -228,9 +225,6 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <div class="alert alert-success" role="alert" hidden>
-                                                                    Test Kit Updated!
-                                                                </div>
                                                             </td>
                                                         </tr>
                                                         <tr>
@@ -242,18 +236,13 @@
                                                                 </div>
                                                             </td>
                                                             <td>
-                                                                <div class="alert alert-success" role="alert" hidden>
-                                                                    Test Kit Updated!
-                                                                </div>
                                                             </td>
                                                         </tr>
                                                     </tbody>
                                                 </table>
                                             </div>
                                         </div>
-
                                         <hr class="my-4">
-
                                         <button class="w-100 btn btn-danger btn-lg" type="submit">Register
                                             Test Center</button>
                                         <br><br>

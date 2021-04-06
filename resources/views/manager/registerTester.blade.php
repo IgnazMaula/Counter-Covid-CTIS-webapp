@@ -310,9 +310,9 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus
-                                        tempore fugit illo quod laborum nemo maxime? Delectus minima deserunt quasi eum
-                                        atque porro ea enim doloremque, placeat praesentium?
+                                        You can register the tester that will be working on your test center. fill the
+                                        required data in the form to register and assign the tester into the test
+                                        center. Tester then will able to use account that created by you.
                                     </p>
                                 </div>
                             </div>
