@@ -12,7 +12,7 @@
     <title>Counter-Covid CTIS - Book Test</title>
 
     <!-- Icon -->
-    <link rel="icon" href="/img/favicon.webp">
+    <link rel="icon" href="/images/favicon.webp">
 
     <!-- Custom fonts for this template-->
     <link href="/vendor/fontawesome-free/css/all.min.css" rel="stylesheet" type="text/css">
@@ -307,4 +307,3 @@
 </body>
 
 </html>
-/

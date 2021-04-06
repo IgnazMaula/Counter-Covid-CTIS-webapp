@@ -32,8 +32,9 @@ class TesterController extends Controller
     // }
 
     public function approveTestRequest()
-    {
-        return view('tester.approveTestRequest');
+    {   
+        $covidTests = DB::table('covid_tests')->get();
+        return view('tester.approveTestRequest', ['covidTests' => $covidTests]);
     }
 
     public function updateTestResult()

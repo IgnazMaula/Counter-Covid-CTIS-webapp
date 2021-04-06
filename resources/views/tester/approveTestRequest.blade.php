@@ -207,147 +207,58 @@
                                             </tr>
                                         </thead>
                                         <tbody>
-                                            <tr>
-                                                <th scope="row">931039139102</th>
-                                                <td>Valterri James</td>
-                                                <td>Rapid Test</td>
-                                                <td>3/25/2021</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm"
-                                                        data-toggle="modal" data-target="#exampleModal">
-                                                        <i class="fas fa-book"></i>
-                                                        Read symptoms
-                                                    </button>
+                                            @foreach ($covidTests as $key => $data)
+                                                @if ($data->testCenter == Auth::user()->testCenter)
+                                                    <tr>
+                                                        <th scope="row">{{ $data->id }}</th>
+                                                        <td>{{ $data->patientName }}</td>
+                                                        <td>{{ $data->testType }}</td>
+                                                        <td>{{ $data->date }}</td>
+                                                        <td>
+                                                            <!-- Button trigger modal -->
+                                                            <button type="button" class="btn btn-info btn-sm"
+                                                                data-toggle="modal" data-target="#exampleModal">
+                                                                <i class="fas fa-book"></i>
+                                                                Read Symptoms
+                                                            </button>
 
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                                        symptoms</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    I have Crippling Depression
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-secondary m-auto"
-                                                                        data-dismiss="modal">Close</button>
+                                                            <!-- Modal -->
+                                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                                aria-labelledby="exampleModalLabel" aria-hidden="true">
+                                                                <div class="modal-dialog modal-dialog-centered">
+                                                                    <div class="modal-content">
+                                                                        <div class="modal-header">
+                                                                            <h5 class="modal-title"
+                                                                                id="exampleModalLabel">
+                                                                                Patient's Symptoms</h5>
+                                                                            <button type="button" class="close"
+                                                                                data-dismiss="modal" aria-label="Close">
+                                                                                <span aria-hidden="true">&times;</span>
+                                                                            </button>
+                                                                        </div>
+                                                                        <div class="modal-body">
+                                                                            {{ $data->symptoms }}
+                                                                        </div>
+                                                                        <div class="modal-footer">
+                                                                            <button type="button"
+                                                                                class="btn btn-secondary m-auto"
+                                                                                data-dismiss="modal">Close</button>
+                                                                        </div>
+                                                                    </div>
                                                                 </div>
                                                             </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-sm">
-                                                        <i class="fas fa-check"></i>
-                                                        Accept</button>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times"></i>
-                                                        Decline</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">931039139103</th>
-                                                <td>Mattia Binotto</td>
-                                                <td>Swab Test</td>
-                                                <td>4/1/2021</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm"
-                                                        data-toggle="modal" data-target="#exampleModal">
-                                                        <i class="fas fa-book"></i>
-                                                        Read symptoms
-                                                    </button>
-
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                                        symptoms</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    I have Crippling Depression
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-secondary m-auto"
-                                                                        data-dismiss="modal">Close</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-sm">
-                                                        <i class="fas fa-check"></i>
-                                                        Accept</button>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times"></i>
-                                                        Decline</button>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">931039139104</th>
-                                                <td>Lando Norris</td>
-                                                <td>PCR Test</td>
-                                                <td>4/4/2021</td>
-                                                <td>
-                                                    <!-- Button trigger modal -->
-                                                    <button type="button" class="btn btn-info btn-sm"
-                                                        data-toggle="modal" data-target="#exampleModal">
-                                                        <i class="fas fa-book"></i>
-                                                        Read symptoms
-                                                    </button>
-
-                                                    <!-- Modal -->
-                                                    <div class="modal fade" id="exampleModal" tabindex="-1"
-                                                        aria-labelledby="exampleModalLabel" aria-hidden="true">
-                                                        <div class="modal-dialog">
-                                                            <div class="modal-content">
-                                                                <div class="modal-header">
-                                                                    <h5 class="modal-title" id="exampleModalLabel">
-                                                                        symptoms</h5>
-                                                                    <button type="button" class="close"
-                                                                        data-dismiss="modal" aria-label="Close">
-                                                                        <span aria-hidden="true">&times;</span>
-                                                                    </button>
-                                                                </div>
-                                                                <div class="modal-body">
-                                                                    I have Crippling Depression
-                                                                </div>
-                                                                <div class="modal-footer">
-                                                                    <button type="button"
-                                                                        class="btn btn-secondary m-auto"
-                                                                        data-dismiss="modal">Close</button>
-                                                                </div>
-                                                            </div>
-                                                        </div>
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-sm">
-                                                        <i class="fas fa-check"></i>
-                                                        Accept</button>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times"></i>
-                                                        Decline</button>
-                                                </td>
-                                            </tr>
+                                                        </td>
+                                                        <td>
+                                                            <button class="btn btn-success btn-sm">
+                                                                <i class="fas fa-check"></i>
+                                                                Accept</button>
+                                                            <button class="btn btn-danger btn-sm">
+                                                                <i class="fas fa-times"></i>
+                                                                Decline</button>
+                                                        </td>
+                                                    </tr>
+                                                @endif
+                                            @endforeach
                                         </tbody>
                                     </table>
                                 </div>

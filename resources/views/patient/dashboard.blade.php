@@ -442,12 +442,8 @@
                                                         <i class="fas fa-book-medical"></i>
                                                         Book Test Now</button>
                                                 </a>
-
                                             </h4>
-
                                         </div>
-
-
                                     @endif
                                 </div>
                             </div>
