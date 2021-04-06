@@ -285,9 +285,10 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <p>
-                                        Lorem ipsum dolor sit amet consectetur adipisicing elit. Blanditiis at minus
-                                        tempore fugit illo quod laborum nemo maxime? Delectus minima deserunt quasi eum
-                                        atque porro ea enim doloremque, placeat praesentium?
+                                        You can request for a Covid-19 test schedule here. Select test center where you
+                                        prefer to take the test, select the test type and request for the date. you may
+                                        also provide details about your symptoms. tester of the related test center
+                                        then will accept your test request if possible.
                                     </p>
                                 </div>
                             </div>

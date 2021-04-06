@@ -14,8 +14,16 @@ class TesterController extends Controller
      */
     public function dashboard()
     {   
+        // $covidTests = DB::table('covid_tests')->get();
+        // $tester = DB::table('users')->get();
+        // $testCenters = DB::table('test_centers')->get();
+        // $testKits = DB::table('test_kits')->get();
+        // return view('tester.dashboard', ['covidTests' => $covidTests], ['tester' => $tester], ['testCenters' => $testCenters], ['testKits' => $testKits]);
+
+        $testCenters = DB::table('test_centers')->get(); 
         $covidTests = DB::table('covid_tests')->get();
-        return view('tester.dashboard', ['covidTests' => $covidTests]);
+        $testKits = DB::table('test_kits')->get();
+        return view('tester.dashboard',  ['testCenters' => $testCenters, 'covidTests' => $covidTests, 'testKits' => $testKits]);
     }
 
     // public function registerPatient()

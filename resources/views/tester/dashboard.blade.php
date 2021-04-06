@@ -342,24 +342,39 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <table ble class="table table-borderless">
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">Rapid Test Kit</th>
-                                                <td>16 Units</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Swab Test Kit</th>
-                                                <td>27 Units</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">PCR Test Kit</th>
-                                                <td>11 Units</td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row"><br></th>
-                                                <td><br></td>
-                                            </tr>
-                                        </tbody>
+                                        @php
+                                            $selectedID = null;
+                                        @endphp
+                                        @foreach ($testCenters as $a => $data)
+                                            @if ($data->name == Auth::user()->testCenter)
+                                                @php
+                                                    $selectedID = $data->id;
+                                                @endphp
+                                            @endif
+                                        @endforeach
+                                        @foreach ($testKits as $key => $data)
+                                            @if ($data->center_id == $selectedID)
+                                                <tbody>
+                                                    <tr>
+                                                        <th scope="row">Rapid Test Kit</th>
+                                                        <td>{{ $data->rapidStock }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">Swab Test Kit</th>
+                                                        <td>{{ $data->swabStock }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row">PCR Test Kit</th>
+                                                        <td>{{ $data->pcrStock }}</td>
+                                                    </tr>
+                                                    <tr>
+                                                        <th scope="row"><br></th>
+                                                        <td><br></td>
+                                                    </tr>
+                                                </tbody>
+                                            @endif
+                                        @endforeach
+
                                     </table>
                                 </div>
                             </div>
