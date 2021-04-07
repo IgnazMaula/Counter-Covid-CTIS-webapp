@@ -202,13 +202,13 @@
                                                 <th scope="col">Patient Name</th>
                                                 <th scope="col">Requested Test</th>
                                                 <th scope="col">Requested Date</th>
-                                                <th scope="col">symptoms</th>
+                                                <th scope="col">Symptoms</th>
                                                 <th scope="col">Action</th>
                                             </tr>
                                         </thead>
                                         <tbody>
                                             @foreach ($covidTests as $key => $data)
-                                                @if ($data->testCenter == Auth::user()->testCenter)
+                                                @if ($data->testCenter == Auth::user()->testCenter and $data->status == 'Wait for Approval')
                                                     <tr>
                                                         <th scope="row">{{ $data->id }}</th>
                                                         <td>{{ $data->patientName }}</td>
@@ -217,13 +217,15 @@
                                                         <td>
                                                             <!-- Button trigger modal -->
                                                             <button type="button" class="btn btn-info btn-sm"
-                                                                data-toggle="modal" data-target="#exampleModal">
+                                                                data-toggle="modal"
+                                                                data-target="#exampleModal{{ $key }}">
                                                                 <i class="fas fa-book"></i>
                                                                 Read Symptoms
                                                             </button>
 
                                                             <!-- Modal -->
-                                                            <div class="modal fade" id="exampleModal" tabindex="-1"
+                                                            <div class="modal fade"
+                                                                id="exampleModal{{ $key }}" tabindex="-1"
                                                                 aria-labelledby="exampleModalLabel" aria-hidden="true">
                                                                 <div class="modal-dialog modal-dialog-centered">
                                                                     <div class="modal-content">
@@ -247,14 +249,25 @@
                                                                     </div>
                                                                 </div>
                                                             </div>
+                                                            @php
+                                                                $key++;
+                                                            @endphp
                                                         </td>
                                                         <td>
-                                                            <button class="btn btn-success btn-sm">
-                                                                <i class="fas fa-check"></i>
-                                                                Accept</button>
-                                                            <button class="btn btn-danger btn-sm">
-                                                                <i class="fas fa-times"></i>
-                                                                Decline</button>
+                                                            <form class="needs-validation" novalidate="" method="POST"
+                                                                action="{{ route('approveTestRequest') }}">
+                                                                @csrf
+                                                                <input type="text" name="id"
+                                                                    value="{{ $data->id }}" hidden>
+                                                                <button class="btn btn-success btn-sm" type="submit"
+                                                                    name="action" value="Accepted">
+                                                                    <i class="fas fa-check"></i>
+                                                                    Accept</button>
+                                                                <button class="btn btn-danger btn-sm" type="submit"
+                                                                    name="action" value="Rejected">
+                                                                    <i class="fas fa-times"></i>
+                                                                    Decline</button>
+                                                            </form>
                                                         </td>
                                                     </tr>
                                                 @endif

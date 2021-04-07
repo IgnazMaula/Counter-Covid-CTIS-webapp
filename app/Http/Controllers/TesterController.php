@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use DB;
+use App\Models\CovidTest;
 
 class TesterController extends Controller
 {
@@ -35,6 +36,17 @@ class TesterController extends Controller
     {   
         $covidTests = DB::table('covid_tests')->get();
         return view('tester.approveTestRequest', ['covidTests' => $covidTests]);
+    }
+    
+    public function testRequestAction(Request $request)
+    {   
+        CovidTest::where('id', $request->id)->update([
+            'status' => $request->action,
+            'testerName' => $request->user()['name'] 
+        ]);
+        
+
+        return("success");
     }
 
     public function updateTestResult()

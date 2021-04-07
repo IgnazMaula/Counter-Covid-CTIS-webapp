@@ -420,7 +420,12 @@
                                                             <th scope="row">Test Status</th>
                                                             @if ($ct->status != 'Wait for Approval')
                                                                 <td>
-                                                                    {{ $ct->status . ' (' . $ct->result . ')' }}
+                                                                    @if ($ct->result != null)
+                                                                        {{ $ct->status . ' (' . $ct->result . ')' }}
+                                                                    @else
+                                                                        {{ $ct->status . ' (Wait for Result)' }}
+                                                                    @endif
+
                                                                 </td>
                                                             @else
                                                                 <td>

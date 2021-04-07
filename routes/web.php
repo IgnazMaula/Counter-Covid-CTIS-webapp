@@ -33,6 +33,7 @@ Route::get('/tester/updateTestResult', 'App\Http\Controllers\TesterController@up
 Route::get('/tester/viewTestingHistory', 'App\Http\Controllers\TesterController@viewTestingHistory')->name('testerViewTestingHistory')->middleware('tester');
 
 Route::post('/tester/registerPatient', 'App\Http\Controllers\RegisterPatientController@store')->name('registerPatient')->middleware('tester');
+Route::post('/tester/approveTestRequest', 'App\Http\Controllers\TesterController@testRequestAction')->name('approveTestRequest')->middleware('tester');
 
 Route::get('/manager/registerTestCenter', 'App\Http\Controllers\ManagerController@registerTestCenter')->name('registerTestCenter')->middleware('manager');
 Route::get('/manager/dashboard', 'App\Http\Controllers\ManagerController@dashboard')->name('managerDashboard')->middleware('manager');
