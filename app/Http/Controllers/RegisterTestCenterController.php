@@ -34,6 +34,7 @@ class RegisterTestCenterController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * Function to store the Test Centre to the database
      */
     public function store(Request $request)
     {
@@ -41,17 +42,17 @@ class RegisterTestCenterController extends Controller
             'name' => ['unique:test_centers','required', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
         ]);
-        
+
         $testCenter = new TestCenter;
 
         $testCenter->name = $request->name;
         $testCenter->location = $request->location;
-        
+
         // Assign the test center into manager who registered it
         User::where('id', $request->user()['id'])->update([
             'testCenter' => $request->name
         ]);
-        
+
         $testCenter->save();
 
         $testKit = new TestKit;
@@ -60,7 +61,7 @@ class RegisterTestCenterController extends Controller
         $testKit->rapidStock = $request->rapidStock;
         $testKit->swabStock = $request->swabStock;
         $testKit->pcrStock = $request->pcrStock;
-        
+
         $testKit->save();
 
         return view('manager.successRegisterTestCenter', ['name' => $testCenter->name]);
