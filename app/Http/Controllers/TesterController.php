@@ -45,8 +45,9 @@ class TesterController extends Controller
             'testerName' => $request->user()['name'] 
         ]);
         
-
-        return("success");
+        $patientName = $request->patientName;
+        $action = $request->action;
+        return view('tester.successApproveTestRequest', ['patientName' => $patientName, 'action'=> $action]);
     }
 
     public function updateTestResult()

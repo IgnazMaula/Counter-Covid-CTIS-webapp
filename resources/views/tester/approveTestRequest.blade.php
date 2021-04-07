@@ -259,6 +259,8 @@
                                                                 @csrf
                                                                 <input type="text" name="id"
                                                                     value="{{ $data->id }}" hidden>
+                                                                <input type="text" name="patientName"
+                                                                    value="{{ $data->patientName }}" hidden>
                                                                 <button class="btn btn-success btn-sm" type="submit"
                                                                     name="action" value="Accepted">
                                                                     <i class="fas fa-check"></i>

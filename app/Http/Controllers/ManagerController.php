@@ -30,8 +30,9 @@ class ManagerController extends Controller
     }
 
     public function viewTesters()
-    {
-        return view('manager.viewTesters');
+    {   
+        $tester = DB::table('users')->get();
+        return view('manager.viewTesters', ['tester' => $tester]);
     }
 
     public function manageTestKit()

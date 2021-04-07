@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Counter-Covid CTIS - Dashboard</title>
+    <title>Counter-Covid CTIS - Approve Test Request</title>
 
     <!-- Icon -->
     <link rel="icon" href="/images/favicon.webp">
@@ -21,7 +21,6 @@
         rel="stylesheet">
 
     <!-- Custom styles for this template-->
-    <link href="/vendor/datatables/dataTables.bootstrap4.min.css" rel="stylesheet">
     <link href="/css/sb-admin-2.min.css" rel="stylesheet">
     <link href="/css/sb-admin-custom.css" rel="stylesheet">
 
@@ -37,7 +36,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('managerDashboard') }}">
+                href="{{ route('testerDashboard') }}">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-clinic-medical "></i>
                 </div>
@@ -49,7 +48,7 @@
 
             <!-- Nav Item - Dashboard -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('managerDashboard') }}">
+                <a class="nav-link" href="{{ route('testerDashboard') }}">
                     <i class="fas fa-fw fa-tachometer-alt"></i>
                     <span>Dashboard</span></a>
             </li>
@@ -59,31 +58,30 @@
 
             <!-- Heading -->
             <div class="sidebar-heading">
-                Manager Menu
+                Tester Menu
             </div>
 
             <!-- Nav Item - Charts -->
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('registerTester') }}">
+                <a class="nav-link" href="{{ route('registerPatient') }}">
                     <i class="fas fas fa-user-plus"></i>
-                    <span>Register Tester</span></a>
+                    <span>Register Patient</span></a>
             </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('viewTesters') }}">
-                    <i class="fas fa-fw fa-users"></i>
-                    <span>View Testers</span></a>
+                <a class="nav-link" href="{{ route('approveTestRequest') }}">
+                    <i class="fas fa-fw fa-book-medical"></i>
+                    <span>Approve Test Request</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('manageTestKit') }}">
-                    <i class="fas fa-fw fa-syringe"></i>
-                    <span>Manage Test Kit<i class="fas fa-kite    "></i></span></a>
+                <a class="nav-link" href="{{ route('updateTestResult') }}">
+                    <i class="fas fa-fw fa-tasks"></i>
+                    <span>Update Test Result</span></a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="{{ route('managerViewTestingHistory') }}">
+                <a class="nav-link" href="{{ route('testerViewTestingHistory') }}">
                     <i class="fas fa-fw fa-table"></i>
                     <span>View Testing History</span></a>
             </li>
-
 
             <!-- Divider -->
             <hr class="sidebar-divider d-none d-md-block">
@@ -153,7 +151,7 @@
                                         @endif
                                         <strong>{{ Auth::user()->name }}</strong>
                                     </span>
-                                    <img src="https://img.icons8.com/color/48/ffffff/manager.png" />
+                                    <img src="https://img.icons8.com/color/48/ffffff/nurse-male.png" />
                                 </a>
                                 <!-- Dropdown - User Information -->
                                 <div class="dropdown-menu dropdown-menu-right shadow animated--grow-in"
@@ -176,65 +174,51 @@
                 </nav>
                 <!-- End of Topbar -->
 
+                <!-- Begin Page Content -->
                 <div class="container-fluid">
 
                     <!-- Page Heading -->
                     <div class="d-sm-flex align-items-center justify-content-between mb-4">
-                        <h1 class="h3 mb-0 text-gray-800">Manager Dashboard</h1>
+                        <h1 class="h3 mb-0 text-gray-800">Tester Dashboard</h1>
                     </div>
 
-                    <!-- DataTales Example -->
-                    <div class="card shadow mb-4">
-                        <div class="card-header py-3">
-                            <h6 class="m-0 font-weight-bold text-secondary">List of Testers in This Test Center</h6>
-                        </div>
-                        <div class="card-body">
-                            <div class="table-responsive">
-                                <table class="table table-bordered" id="dataTable" width="100%" cellspacing="0">
-                                    <thead>
-                                        <tr>
-                                            <th>Tester Name</th>
-                                            <th>Tester Email</th>
-                                            <th>Tester Birth Date</th>
-                                            <th>Tester Gender</th>
-                                        </tr>
-                                    </thead>
-                                    <tfoot>
-                                        <tr>
-                                            <th>Tester Name</th>
-                                            <th>Tester Email</th>
-                                            <th>Tester Birth Date</th>
-                                            <th>Tester Gender</th>
-                                        </tr>
-                                    </tfoot>
-                                    <tbody>
-
-                                        @foreach ($tester as $key => $data)
-                                            @if ($data->testCenter == Auth::user()->testCenter and $data->role == 'tester')
-                                                <tr>
-                                                    <td>{{ $data->name }}</td>
-                                                    <td>{{ $data->email }}</td>
-                                                    <td>{{ $data->birthDate }}</td>
-                                                    <td>{{ $data->gender }}</td>
-                                                </tr>
-                                            @endif
-                                        @endforeach
-                                    </tbody>
-                                </table>
+                    <div class="row">
+                        <div class="col-12">
+                            <div class="card shadow mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-dark">Approve Test Schedule</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body pl-5 text-center">
+                                    <h2 class="mt-5 mb-5">Test for {{ $patientName }} Has Been {{ $action }}!
+                                    </h2>
+                                    <a class="mb-5" href="{{ route('testerDashboard') }}"><button
+                                            class=" btn btn-success">
+                                            Back
+                                        </button>
+                                    </a>
+                                </div>
                             </div>
                         </div>
                     </div>
+                    <!-- Content Row -->
+                    <div class="row">
+
+                    </div>
+                    <!-- End of Main Content -->
+
+
 
                 </div>
-                <!-- /.container-fluid -->
-                <!-- End of Main Content -->
-
+                <!-- End of Content Wrapper -->
 
             </div>
-            <!-- End of Content Wrapper -->
+            <!-- End of Page Wrapper -->
 
             <!-- Footer -->
-            <footer class="sticky-footer bg-white">
+            <footer class="sticky-footer bg-white" style="margin-top: 280px;">
                 <div class="container my-auto">
                     <div class="copyright text-center my-auto">
                         <span>Copyright &copy; Counter-Covid CTIS 2021</span>
@@ -243,51 +227,48 @@
             </footer>
             <!-- End of Footer -->
 
-        </div>
-        <!-- End of Page Wrapper -->
+            <!-- Scroll to Top Button-->
+            <a class="scroll-to-top rounded" href="#page-top">
+                <i class="fas fa-angle-up"></i>
+            </a>
 
-        <!-- Scroll to Top Button-->
-        <a class="scroll-to-top rounded" href="#page-top">
-            <i class="fas fa-angle-up"></i>
-        </a>
-
-        <!-- Logout Modal-->
-        <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
-            aria-hidden="true">
-            <div class="modal-dialog" role="document">
-                <div class="modal-content">
-                    <div class="modal-header">
-                        <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
-                        <button class="close" type="button" data-dismiss="modal" aria-label="Close">
-                            <span aria-hidden="true">×</span>
-                        </button>
-                    </div>
-                    <div class="modal-body">Select "Logout" below if you are ready to end your current session.
-                    </div>
-                    <div class="modal-footer">
-                        <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
-                        <a class="btn btn-primary" href="login.html">Logout</a>
+            <!-- Logout Modal-->
+            <div class="modal fade" id="logoutModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel"
+                aria-hidden="true">
+                <div class="modal-dialog" role="document">
+                    <div class="modal-content">
+                        <div class="modal-header">
+                            <h5 class="modal-title" id="exampleModalLabel">Ready to Leave?</h5>
+                            <button class="close" type="button" data-dismiss="modal" aria-label="Close">
+                                <span aria-hidden="true">×</span>
+                            </button>
+                        </div>
+                        <div class="modal-body">Select "Logout" below if you are ready to end your current session.
+                        </div>
+                        <div class="modal-footer">
+                            <button class="btn btn-secondary" type="button" data-dismiss="modal">Cancel</button>
+                            <a class="btn btn-primary" href="login.html">Logout</a>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <!-- Bootstrap core JavaScript-->
-        <script src="/vendor/jquery/jquery.min.js"></script>
-        <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
+            <!-- Bootstrap core JavaScript-->
+            <script src="/vendor/jquery/jquery.min.js"></script>
+            <script src="/vendor/bootstrap/js/bootstrap.bundle.min.js"></script>
 
-        <!-- Core plugin JavaScript-->
-        <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
+            <!-- Core plugin JavaScript-->
+            <script src="/vendor/jquery-easing/jquery.easing.min.js"></script>
 
-        <!-- Custom scripts for all pages-->
-        <script src="/js/sb-admin-2.min.js"></script>
+            <!-- Custom scripts for all pages-->
+            <script src="/js/sb-admin-2.min.js"></script>
 
-        <!-- Page level plugins -->
-        <script src="/vendor/datatables/jquery.dataTables.min.js"></script>
-        <script src="/vendor/datatables/dataTables.bootstrap4.min.js"></script>
+            <!-- Page level plugins -->
+            <script src="/vendor/chart.js/Chart.min.js"></script>
 
-        <!-- Page level custom scripts -->
-        <script src="/js/demo/datatables-demo.js"></script>
+            <!-- Page level custom scripts -->
+            <script src="/js/demo/chart-area-demo.js"></script>
+            <script src="/js/demo/chart-pie-demo.js"></script>
 
 </body>
 
