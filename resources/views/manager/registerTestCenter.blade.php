@@ -194,9 +194,15 @@
                                             {{-- Location --}}
                                             <div class="col-12">
                                                 <label for="location">{{ __('Test Center Location') }}</label>
-                                                <input type="text" class="form-control" id="location" name="location"
-                                                    placeholder="test center location"
+                                                <input type="text"
+                                                    class="form-control @error('location') is-invalid @enderror"
+                                                    id="location" name="location" placeholder="test center location"
                                                     value="{{ old('testCenterLocation') }}" required>
+                                                @error('location')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                                 <br>
                                             </div>
                                             {{-- Test Kit Stock --}}

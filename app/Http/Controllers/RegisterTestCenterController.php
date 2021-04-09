@@ -38,7 +38,7 @@ class RegisterTestCenterController extends Controller
     public function store(Request $request)
     {
         $validatedData = $request->validate([
-            'name' => ['unique:test_centers','required', 'string', 'max:255'],
+            'name' => ['required', 'unique:test_centers', 'string', 'max:255'],
             'location' => ['required', 'string', 'max:255'],
         ]);
         

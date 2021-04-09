@@ -245,11 +245,14 @@
                                             <br><br><br><br>
                                             <div class="col-12" id="sandbox-container">
                                                 <label for="date" class="form-label">Requested Date</label>
-                                                <input type="text" class="form-control" id="date" name="date"
-                                                    placeholder="mm/dd/yyyy" required="">
-                                                <div class="invalid-feedback">
-                                                    Please enter your date.
-                                                </div>
+                                                <input type="text"
+                                                    class="form-control @error('date') is-invalid @enderror" id="date"
+                                                    name="date" placeholder="mm/dd/yyyy" required="">
+                                                @error('date')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                             <br><br><br><br>
                                             <div class="col-12">
@@ -402,4 +405,3 @@
 </body>
 
 </html>
-/

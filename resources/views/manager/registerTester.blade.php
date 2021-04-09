@@ -202,14 +202,15 @@
                                             {{-- First Name --}}
                                             <div class="col-sm-6">
                                                 <label for="firstName">{{ __('Tester First Name') }}</label>
-                                                <input type="text" class="form-control" id="firstName" name="name"
-                                                    placeholder="first name" value="{{ old('firstName') }}" required
-                                                    autofocus>
-                                                {{-- @error('name')
+                                                <input type="text"
+                                                    class="form-control @error('name') is-invalid @enderror"
+                                                    id="firstName" name="name" placeholder="first name"
+                                                    value="{{ old('firstName') }}" required autofocus>
+                                                @error('name')
                                                     <span class="invalid-feedback" role="alert">
                                                         <strong>{{ $message }}</strong>
                                                     </span>
-                                                @enderror --}}
+                                                @enderror
                                             </div>
                                             {{-- Last Name --}}
                                             <div class="col-sm-6">
@@ -263,8 +264,15 @@
                                             <div class="col-6 mt-3 pe-5" id="sandbox-container">
                                                 <label for="birthDate"
                                                     class="form-label">{{ __('Tester Birth Date') }}</label>
-                                                <input type="text" class="form-control" id="birthDate" name="birthDate"
-                                                    placeholder="mm/dd/yyyy" value="{{ old('birthDate') }}" required>
+                                                <input type="text"
+                                                    class="form-control @error('birthDate') is-invalid @enderror"
+                                                    id="birthDate" name="birthDate" placeholder="mm/dd/yyyy"
+                                                    value="{{ old('birthDate') }}" required>
+                                                @error('birthDate')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
                                             </div>
                                             {{-- Gender --}}
                                             <div class="col-6 mt-3 ps-5">
