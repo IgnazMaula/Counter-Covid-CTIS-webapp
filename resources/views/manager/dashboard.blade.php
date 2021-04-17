@@ -235,7 +235,17 @@
                                             </div>
                                             <div class="row no-gutters align-items-center">
                                                 <div class="col-auto">
-                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">0</div>
+                                                    <div class="h5 mb-0 mr-3 font-weight-bold text-gray-800">
+                                                        @php
+                                                            $count = 0;
+                                                            foreach ($covidTests as $key=> $data) {
+                                                                if($data->testCenter == Auth::user()->testCenter) {
+                                                                    $count++;
+                                                                }
+                                                            }
+                                                        @endphp
+                                                        {{$count}}
+                                                    </div>
                                                 </div>
                                             </div>
                                         </div>

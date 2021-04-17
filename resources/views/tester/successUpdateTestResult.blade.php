@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Counter-Covid CTIS - Update Test Result</title>
+    <title>Counter-Covid CTIS - Approve Test Request</title>
 
     <!-- Icon -->
     <link rel="icon" href="/images/favicon.webp">
@@ -67,7 +67,7 @@
                     <i class="fas fas fa-user-plus"></i>
                     <span>Register Patient</span></a>
             </li>
-            <li class="nav-item ">
+            <li class="nav-item">
                 <a class="nav-link" href="{{ route('approveTestRequest') }}">
                     <i class="fas fa-fw fa-book-medical"></i>
                     <span>Approve Test Request</span></a>
@@ -182,70 +182,23 @@
                         <h1 class="h3 mb-0 text-gray-800">Tester Dashboard</h1>
                     </div>
 
-
                     <div class="row">
-
-                        <!-- Area Chart -->
-                        <div class="col-lg-12">
+                        <div class="col-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">Incoming Test Request</h6>
+                                    <h6 class="m-0 font-weight-bold text-dark">Approve Test Schedule</h6>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body">
-                                    <table class="table table-hover">
-                                        <thead>
-                                            <tr>
-                                                <th scope="col">Test ID</th>
-                                                <th scope="col" colspan="2">Patient Name</th>
-                                                <th scope="col">Test Type</th>
-                                                <th scope="col">Test Date</th>
-                                                <th scope="col"></th>
-                                                <th scope="col" class="text-center">Set Patient Status</th>
-                                            </tr>
-                                        </thead>
-                                        <tbody>
-                                            @foreach ($covidTests as $key => $data)
-                                                @if ($data->testCenter == Auth::user()->testCenter and $data->status == 'Accepted')
-                                                    <tr>
-                                                        <th scope="row">{{$data->id}}</th>
-                                                        <td colspan="2">{{$data->patientName}}</td>
-                                                        <td>{{$data->testType}}</td>
-                                                        <td>{{$data->date}}</td>
-                                                        <td></td>
-                                                        <td colspan="2" class="text-center">
-                                                            <form class="needs-validation" novalidate="" method="POST" action="{{route('updateTestResult')}}">
-                                                                @csrf
-                                                                <input type="text" name="id"
-                                                                value="{{ $data->id }}" hidden>
-                                                                <input type="text" name="patientName"
-                                                                value="{{ $data->patientName }}" hidden>
-                                                                <input type="text" name="patientEmail"
-                                                                value="{{ $data->email }}" hidden>
-                                                                <button type="submit" name="action" value="Returnee" class="btn btn-success btn-sm">
-                                                                    <i class="fas fa-heartbeat"></i>
-                                                                    Returnee</button>
-                                                                <button type="submit" name="action" value="Close Contact" class="btn btn-secondary btn-sm">
-                                                                    <i class="fas fa-people-arrows"></i>
-                                                                    Close Contact</button>
-                                                                <button type="submit" name="action" value="Quarantined" class="btn btn-info btn-sm">
-                                                                    <i class="fas fa-house-user"></i>
-                                                                    Quarantined</button>
-                                                                <button type="submit" name="action" value="Suspected" class="btn btn-warning btn-sm">
-                                                                    <i class="fas fa-exclamation-triangle"></i>
-                                                                    Suspected</button>
-                                                                <button type="submit" name="action" value="Infected" class="btn btn-danger btn-sm">
-                                                                    <i class="fas fa-virus"></i>
-                                                                    Infected</button>
-                                                            </form>
-                                                        </td>
-                                                    </tr>
-                                                    @endif
-                                            @endforeach
-                                        </tbody>
-                                    </table>
+                                <div class="card-body pl-5 text-center">
+                                    <h2 class="mt-5 mb-5">Successfuly Update Test Result of <strong>{{ $patientName }}</strong> Into <strong>{{ $action }}</strong>!
+                                    </h2>
+                                    <a class="mb-5" href="{{ route('testerDashboard') }}"><button
+                                            class=" btn btn-success">
+                                            Back
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>

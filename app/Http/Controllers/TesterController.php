@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use Illuminate\Http\Request;
 use DB;
 use App\Models\CovidTest;
+use App\Models\User;
 
 class TesterController extends Controller
 {
@@ -42,7 +43,6 @@ class TesterController extends Controller
     {   
         CovidTest::where('id', $request->id)->update([
             'status' => $request->action,
-            'testerName' => $request->user()['name'] 
         ]);
         
         $patientName = $request->patientName;
@@ -51,13 +51,31 @@ class TesterController extends Controller
     }
 
     public function updateTestResult()
-    {
-        return view('tester.updateTestResult');
+    {   
+        $covidTests = DB::table('covid_tests')->get();
+        return view('tester.updateTestResult', ['covidTests' => $covidTests]);
     }
     
+    public function testResultAction(Request $request)
+    {   
+        CovidTest::where('id', $request->id)->update([
+            'result' => $request->action,
+            'status' => "Completed",
+            'testerName' => $request->user()['name'] 
+        ]);
+        User::where('email', $request->patientEmail)->update([
+            'currentStatus' => $request->action,
+        ]);
+        
+        $patientName = $request->patientName;
+        $action = $request->action;
+        return view('tester.successUpdateTestResult', ['patientName' => $patientName, 'action'=> $action]);
+    }
+
     public function viewTestingHistory()
     {
-        return view('tester.viewTestingHistory');
+        $covidTests = DB::table('covid_tests')->get();
+        return view('tester.viewTestingHistory', ['covidTests' => $covidTests]);
     }
 
     /**

@@ -16,7 +16,8 @@ class ManagerController extends Controller
     {   
         $testCenter = DB::table('test_centers')->get();
         $tester = DB::table('users')->get();
-        return view('manager.dashboard',  ['testCenter' => $testCenter], ['tester' => $tester]);
+        $covidTests = DB::table('covid_tests')->get();
+        return view('manager.dashboard',  ['testCenter' => $testCenter, 'tester' => $tester, 'covidTests' => $covidTests]);
     }
 
     public function registerTestCenter()
@@ -41,8 +42,9 @@ class ManagerController extends Controller
     }
     
     public function viewTestingHistory()
-    {
-        return view('manager.viewTestingHistory');
+    {   
+        $covidTests = DB::table('covid_tests')->get();
+        return view('manager.viewTestingHistory' , ['covidTests' => $covidTests]);
     }
 
     public function assignTestCenter()

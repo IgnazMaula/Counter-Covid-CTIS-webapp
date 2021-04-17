@@ -25,7 +25,8 @@ class PatientController extends Controller
     }
     
     public function viewTestingHistory() {
-        return view('patient.viewTestingHistory');
+        $covidTests = DB::table('covid_tests')->get();
+        return view('patient.viewTestingHistory', ['covidTests' => $covidTests]);
     }
 
     /**

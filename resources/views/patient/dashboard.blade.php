@@ -228,7 +228,7 @@
                                                         $testTaken = 0;
                                                     @endphp
                                                     @foreach ($covidTests as $key => $data)
-                                                        @if ($data->status == 'Completed')
+                                                        @if ($data->status == 'Completed' and $data->patientName == Auth::user()->name)
                                                             @php
                                                                 $testTaken += 1;
                                                             @endphp

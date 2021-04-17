@@ -216,42 +216,25 @@
                                         </tr>
                                     </tfoot>
                                     <tbody>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                        </tr>
-                                        <tr>
-                                            <td>Tiger Nixon</td>
-                                            <td>System Architect</td>
-                                            <td>Edinburgh</td>
-                                            <td>61</td>
-                                            <td>Tiger Nixon</td>
-                                            <td>$320,800</td>
-                                            <td>$320,800</td>
-                                        </tr>
+                                        @foreach($covidTests as $key=> $data)
+                                        @if ($data->testCenter == Auth::user()->testCenter)
+                                            <tr>                
+                                                <td>{{$data->id}}</td>
+                                                <td>{{$data->patientName}}</td>
+                                                <td>{{$data->testType}}</td>
+                                                <td>{{$data->date}}</td>
+                                                <td>{{$data->testerName}}</td>
+                                                <td>{{$data->status}}</td>  
+                                                <td>
+                                                    @if($data->status != "Completed")
+                                                        {{"Not Tested"}}
+                                                    @else
+                                                        {{$data->result}}
+                                                    @endif
+                                                </td>
+                                            </tr>
+                                        @endif
+                                    @endforeach
                                     </tbody>
                                 </table>
                             </div>
