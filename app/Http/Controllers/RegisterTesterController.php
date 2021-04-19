@@ -33,9 +33,10 @@ class RegisterTesterController extends Controller
      *
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
+     * Function to store the Tester data to the database
      */
     public function store(Request $request)
-    {   
+    {
 
         $validatedData = $request->validate([
             'name' => ['required', 'string', 'max:255'],
@@ -44,7 +45,7 @@ class RegisterTesterController extends Controller
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'birthDate' => ['required', 'string', 'max:255'],
         ]);
-        
+
         $user = new User;
 
         $name = $request->name . ' ' . $request->lastName;
@@ -56,11 +57,11 @@ class RegisterTesterController extends Controller
         $user->gender = $request->gender;
         $user->role = "tester";
         $user->testCenter = $request->user()['testCenter'];
-            
+
         $user->save();
-        
+
         return view('manager.successRegisterTester', ['name' => $user->name]);
-        
+
     }
 
     /**
