@@ -177,7 +177,9 @@
 
                 </nav>
                 <!-- End of Topbar -->
-
+                <form class="needs-validation" novalidate="" method="POST"
+                                        action="{{ route('registerPatient') }}">
+                                        @csrf
                 <!-- Begin Page Content -->
                 <div class="container-fluid">
 
@@ -187,10 +189,11 @@
                     </div>
 
                     <div class="row">
-
+                        
+                        
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
-                            <div class="card shadow mb-4">
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="card shadow mb-4 pb-2">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
@@ -198,10 +201,6 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body pl-5" style="width: 70%;">
-
-                                    <form class="needs-validation" novalidate="" method="POST"
-                                        action="{{ route('registerPatient') }}">
-                                        @csrf
                                         <div class="row g-3">
                                             {{-- First Name --}}
                                             <div class="col-sm-6">
@@ -286,21 +285,12 @@
                                             </div>
 
                                         </div>
-
-                                        <hr class="my-4">
-
-                                        <button class="w-100 btn btn-danger btn-lg" type="submit">Register
-                                            Patient</button>
-                                        <br><br>
-                                        <button class="w-100 btn btn-outline-secondary btn-lg" type="reset">
-                                            Reset</button>
-                                    </form>
                                 </div>
                             </div>
                         </div>
 
                         <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
+                        {{-- <div class="col-xl-4 col-lg-5">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
@@ -319,14 +309,112 @@
                                     </p>
                                 </div>
                             </div>
+                        </div> --}}
+
+                        <!-- Area Chart -->
+                        <div class="col-xl-6 col-lg-7">
+                            <div class="card shadow pb-3 mb-4">
+                                <!-- Card Header - Dropdown -->
+                                <div
+                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
+                                    <h6 class="m-0 font-weight-bold text-dark">Book Test Schedule</h6>
+                                </div>
+                                <!-- Card Body -->
+                                <div class="card-body pl-5" style="width: 70%;">
+                                        <div class="row g-3">
+
+                                            {{-- <div class="col-12">
+                                                <label for="name" class="form-label">Name</label>
+                                                <div class="input-group has-validation">
+                                                    <input type="text" class="form-control" id="name" name="patientName"
+                                                        value="{{ Auth::user()->name }}" id="disableInput" readonly>
+                                                    <div class="invalid-feedback">
+                                                        Your Name is required.
+                                                    </div>
+                                                </div>
+                                            </div>
+                                            <br><br><br><br>
+                                            <div class="col-12">
+                                                <label for="email" class="form-label">Email <span
+                                                        class="text-muted"></span></label>
+                                                <input type="text" class="form-control" id="email" name="email"
+                                                    value="{{ Auth::user()->email }}" id="disableInput" readonly>
+                                                <div class="invalid-feedback">
+                                                    Please enter a valid email address for shipping updates.
+                                                </div>
+                                            </div>
+                                            <br><br><br><br> --}}
+                                            {{-- <div class="col-12">
+                                                <label for="testCenter" class="form-label">Select Test Center<span
+                                                        class="text-muted"></span></label>
+                                                <select id="testCenter" class="form-control" name="testCenter"
+                                                    aria-label="Default select example">
+                                                    @foreach ($testCenter as $key => $data)
+                                                        <option value="{{ $data->name }}"> {{ $data->name }}
+                                                        </option>
+                                                    @endforeach
+                                                </select> --}}
+                                            <div class="col-12">
+                                                <label for="testCenter" class="form-label">Test Center <span
+                                                        class="text-muted"></span></label>
+                                                <input type="text" class="form-control" id="testCenter" name="testCenter"
+                                                    value="{{ Auth::user()->testCenter }}" id="disableInput" readonly>
+                                            </div>
+                                            <br><br><br><br>
+                                            <div class="col-12">
+                                                <label for="testType" class="form-label" name="testType">Select Test
+                                                    Type<span class="text-muted"></span></label>
+                                                <select id="testType" class="form-control" name="testType"
+                                                    aria-label="Default select example">
+                                                    <option value="Rapid Test" selected>Rapid Test</option>
+                                                    <option value="Swab Test">Swab Test</option>
+                                                    <option value="PCR Test">PCR Test</option>
+                                                </select>
+                                            </div>
+                                            <br><br><br><br>
+                                            <div class="col-12" id="sandbox-container">
+                                                <label for="date" class="form-label">Requested Date</label>
+                                                <input type="text"
+                                                    class="form-control @error('date') is-invalid @enderror" id="date"
+                                                    name="date" placeholder="mm/dd/yyyy" required="">
+                                                @error('date')
+                                                    <span class="invalid-feedback" role="alert">
+                                                        <strong>{{ $message }}</strong>
+                                                    </span>
+                                                @enderror
+                                            </div>
+                                            <br><br><br><br>
+                                            <div class="col-12">
+                                                <label for="floatingTextarea2">symptoms</label>
+                                                <textarea class="form-control" placeholder="Describe your symptoms here"
+                                                    name="symptoms" id="floatingTextarea2"
+                                                    style="height: 100px"></textarea>
+                                            </div>
+
+                                        </div>
+                                    <br><br>
+                                </div>
+                            </div>
                         </div>
+
                     </div>
 
                     <!-- Content Row -->
                     <div class="row">
-
+                        <div class="col-xl-12">
+                            <div class="card shadow mb-4">
+                                <div class="card-body m-auto" style="width: 40%">
+                                    <button class="w-100 btn btn-danger btn-lg" type="submit">Register
+                                        & Book Test Schedule For Patient</button>
+                                    <br><br>
+                                    <button class="w-100 btn btn-outline-secondary btn-lg" type="reset">
+                                        Reset</button>
+                                </div>
+                            </div>
+                        </div>
                     </div>
                     <!-- End of Main Content -->
+                </form>
 
 
                 </div>

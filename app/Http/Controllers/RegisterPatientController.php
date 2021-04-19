@@ -4,7 +4,11 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Models\User;
+use App\Models\CovidTest;
+use App\Models\TestCenter;
 use Illuminate\Support\Facades\Hash;
+use DB;
+
 
 class RegisterPatientController extends Controller
 {
@@ -14,8 +18,9 @@ class RegisterPatientController extends Controller
      * @return \Illuminate\Http\Response
      */
     public function index()
-    {
-        return view('tester.registerPatient'); 
+    {   
+        $testCenter = DB::table('test_centers')->get();
+        return view('tester.registerPatient',  ['testCenter' => $testCenter]); 
     }
 
     /**
@@ -43,6 +48,7 @@ class RegisterPatientController extends Controller
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:8', 'confirmed'],
             'birthDate' => ['required', 'string', 'max:255'],
+            'date' => ['required', 'string', 'max:255'],
         ]);
         
         $user = new User;
@@ -56,6 +62,18 @@ class RegisterPatientController extends Controller
         $user->gender = $request->gender;
 
         $user->save();
+
+        $test = new CovidTest;
+
+        $test->patientName = $name;
+        $test->email = $request->email;
+        $test->testCenter = $request->testCenter;
+        $test->testType = $request->testType;
+        $test->date = $request->date;
+        $test->symptoms = $request->symptoms;
+        $test->status = "Accepted";
+            
+        $test->save();
         
         return view('tester.successRegisterPatient');
         
