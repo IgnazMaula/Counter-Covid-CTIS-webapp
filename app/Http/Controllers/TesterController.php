@@ -6,6 +6,8 @@ use Illuminate\Http\Request;
 use DB;
 use App\Models\CovidTest;
 use App\Models\User;
+use App\Models\TestCenter;
+use App\Models\TestKit;
 
 class TesterController extends Controller
 {
@@ -58,6 +60,7 @@ class TesterController extends Controller
     
     public function testResultAction(Request $request)
     {   
+        
         CovidTest::where('id', $request->id)->update([
             'result' => $request->action,
             'status' => "Completed",
@@ -66,6 +69,46 @@ class TesterController extends Controller
         User::where('email', $request->patientEmail)->update([
             'currentStatus' => $request->action,
         ]);
+        
+        $testKits = DB::table('test_kits')->get();
+        $testCenters = DB::table('test_centers')->get();
+        
+        $tc_id;
+        foreach ($testCenters as $tc) {
+            if ($tc->name == $request->testCenter) {
+                $tc_id = $tc->id;
+            }
+        }
+        
+        $rapid;
+        $swab;
+        $pcr;
+
+        foreach ($testKits as $tk) {
+            if ($tk->id == $tc_id) {
+                $rapid = $tk->rapidStock;
+                $swab = $tk->swabStock;
+                $pcr = $tk->pcrStock;
+            }
+        }
+
+        if ($request->testType == "Rapid Test") {
+            
+            TestKit::where('center_id', $tc_id)->update([
+                'rapidStock' => $rapid - 1,
+            ]);
+        }
+        elseif ($request->testType == "Swab Test") {
+                TestKit::where('center_id', $tc_id)->update([
+                    'swabStock' => $swab - 1,
+                ]);
+            }
+        else {
+                TestKit::where('center_id', $tc_id)->update([
+                    'pcrStock' => $pcr - 1,
+                ]);
+            }
+        
         
         $patientName = $request->patientName;
         $action = $request->action;

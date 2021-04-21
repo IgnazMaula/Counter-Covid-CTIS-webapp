@@ -218,6 +218,8 @@
                                                         <td colspan="2" class="text-center">
                                                             <form class="needs-validation" novalidate="" method="POST" action="{{route('updateTestResult')}}">
                                                                 @csrf
+                                                                <input type="hidden" id="testType" name="testType" value="{{$data->testType}}">
+                                                                <input type="hidden" id="testCenter" name="testCenter" value="{{Auth::user()->testCenter}}">
                                                                 <input type="text" name="id"
                                                                 value="{{ $data->id }}" hidden>
                                                                 <input type="text" name="patientName"

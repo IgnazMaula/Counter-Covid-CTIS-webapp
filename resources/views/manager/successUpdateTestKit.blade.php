@@ -189,9 +189,9 @@
                                 <!-- Card Body -->
                                 <div class="card-body pl-5 text-center">
                                     <h2 class="mt-5 mb-5">Test Kit Updated Successfully!</h2>
-                                    <a class="mb-5" href="{{ route('managerDashboard') }}"><button
+                                    <a class="mb-5" href="{{ route('manageTestKit') }}"><button
                                             class=" btn btn-success">
-                                            Back to My Dashboard
+                                            Back
                                         </button>
                                     </a>
                                 </div>
