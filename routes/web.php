@@ -49,6 +49,7 @@ Route::get('/manager/assignTestCenter', 'App\Http\Controllers\ManagerController@
 
 Route::post('/manager/registerTestCenter', 'App\Http\Controllers\RegisterTestCenterController@store')->name('registerTestCenter')->middleware('manager');
 Route::post('/manager/registerTester', 'App\Http\Controllers\RegisterTesterController@store')->name('registerTester')->middleware('manager');
+Route::post('/manager/manageTestKit', 'App\Http\Controllers\ManagerController@manageTestKitAction')->name('manageTestKit')->middleware('manager');
 
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');

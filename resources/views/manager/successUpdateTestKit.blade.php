@@ -9,7 +9,7 @@
     <meta name="description" content="">
     <meta name="author" content="">
 
-    <title>Counter-Covid CTIS - Register Test Center</title>
+    <title>Counter-Covid CTIS - Register Tester</title>
 
     <!-- Icon -->
     <link rel="icon" href="/images/favicon.webp">
@@ -36,7 +36,7 @@
 
             <!-- Sidebar - Brand -->
             <a class="sidebar-brand d-flex align-items-center justify-content-center"
-                href="{{ route('registerTestCenter') }}">
+                href="{{ route('managerDashboard') }}">
                 <div class="sidebar-brand-icon">
                     <i class="fas fa-clinic-medical "></i>
                 </div>
@@ -56,10 +56,25 @@
             </div>
 
             <!-- Nav Item - Charts -->
+            <li class="nav-item ">
+                <a class="nav-link" href="{{ route('registerTester') }}">
+                    <i class="fas fas fa-user-plus"></i>
+                    <span>Register Tester</span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('viewTesters') }}">
+                    <i class="fas fa-fw fa-users"></i>
+                    <span>View Testers</span></a>
+            </li>
             <li class="nav-item active">
-                <a class="nav-link" href="{{ route('registerTestCenter') }}">
-                    <i class="fas fa-hospital"></i>
-                    <span>Register Test Center</span></a>
+                <a class="nav-link" href="{{ route('manageTestKit') }}">
+                    <i class="fas fa-fw fa-syringe"></i>
+                    <span>Manage Test Kit <i class="fas fa-kite    "></i></span></a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="{{ route('managerViewTestingHistory') }}">
+                    <i class="fas fa-fw fa-table"></i>
+                    <span>View Testing History</span></a>
             </li>
 
             <!-- Divider -->
@@ -99,7 +114,6 @@
                             <!-- Dropdown - Messages -->
                             <div class="dropdown-menu dropdown-menu-right p-3 shadow animated--grow-in"
                                 aria-labelledby="searchDropdown">
-                                <!-- Form for registering test centre -->
                                 <form class="form-inline mr-auto w-100 navbar-search">
                                     <div class="input-group">
                                         <input type="text" class="form-control bg-light border-0 small"
@@ -165,119 +179,21 @@
                     <div class="row">
 
                         <!-- Area Chart -->
-                        <div class="col-xl-8 col-lg-7">
+                        <div class="col-12">
                             <div class="card shadow mb-4">
                                 <!-- Card Header - Dropdown -->
                                 <div
                                     class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">Register Test Center</h6>
+                                    <h6 class="m-0 font-weight-bold text-dark">Register Tester</h6>
                                 </div>
                                 <!-- Card Body -->
-                                <div class="card-body pl-5" style="width: 70%;">
-                                    <form class="needs-validation" novalidate="" method="POST"
-                                        action="{{ route('registerTestCenter') }}">
-                                        @csrf
-                                        <div class="row g-3">
-                                            {{-- Test Center Name --}}
-                                            <div class="col-12">
-                                                <label for="name">{{ __('Test Center Name') }}</label>
-                                                <input type="text"
-                                                    class="form-control @error('name') is-invalid @enderror" id="name"
-                                                    name="name" placeholder="test center name"
-                                                    value="{{ old('name') }}" required autofocus>
-                                                @error('name')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                                <br>
-                                            </div>
-                                            {{-- Location --}}
-                                            <div class="col-12">
-                                                <label for="location">{{ __('Test Center Location') }}</label>
-                                                <input type="text"
-                                                    class="form-control @error('location') is-invalid @enderror"
-                                                    id="location" name="location" placeholder="test center location"
-                                                    value="{{ old('testCenterLocation') }}" required>
-                                                @error('location')
-                                                    <span class="invalid-feedback" role="alert">
-                                                        <strong>{{ $message }}</strong>
-                                                    </span>
-                                                @enderror
-                                                <br>
-                                            </div>
-                                            {{-- Test Kit Stock --}}
-                                            <div class="col-12 mt-4">
-                                                <label for="testStock"
-                                                    class="mb-4"><b>{{ __('Initialize Test Kit Stock') }}</b></label>
-                                                <table ble class="table table-borderless">
-                                                    <tbody>
-                                                        <tr>
-                                                            <td scope="row">Rapid Test Kit Stock</td>
-                                                            <td>
-                                                                <div style="width: 50%; margin: 0 auto;">
-                                                                    <input type="number" value="200" min="1" max="10000"
-                                                                        step="1" name="rapidStock" />
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td scope="row">Swab Test Kit Stock</td>
-                                                            <td>
-                                                                <div style="width: 50%; margin: 0 auto;">
-                                                                    <input type="number" value="200" min="1" max="10000"
-                                                                        step="1" name="swabStock" />
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                        <tr>
-                                                            <td scope="row">PCR Test Kit Stock</td>
-                                                            <td>
-                                                                <div style="width: 50%; margin: 0 auto;">
-                                                                    <input type="number" value="200" min="1" max="10000"
-                                                                        step="1" name="pcrStock" />
-                                                                </div>
-                                                            </td>
-                                                            <td>
-                                                            </td>
-                                                        </tr>
-                                                    </tbody>
-                                                </table>
-                                            </div>
-                                        </div>
-                                        <hr class="my-4">
-                                        <button class="w-100 btn btn-danger btn-lg" type="submit">Register
-                                            Test Center</button>
-                                        <br><br>
-                                        <button class="w-100 btn btn-outline-secondary btn-lg" type="reset">
-                                            Reset</button>
-                                    </form>
-                                </div>
-                            </div>
-                        </div>
-
-                        <!-- Pie Chart -->
-                        <div class="col-xl-4 col-lg-5">
-                            <div class="card shadow mb-4">
-                                <!-- Card Header - Dropdown -->
-                                <div
-                                    class="card-header py-3 d-flex flex-row align-items-center justify-content-between">
-                                    <h6 class="m-0 font-weight-bold text-dark">
-                                        <i class="fas fa-info-circle"></i>
-                                        Register Test Center
-                                    </h6>
-                                </div>
-                                <!-- Card Body -->
-                                <div class="card-body">
-                                    <p>
-                                        You haven't register your test center yet. please provide the detail of your
-                                        test center and register it. Once it register you will automatically assigned to
-                                        this test center and you will able to manage your test center from the dashboard
-                                    </p>
+                                <div class="card-body pl-5 text-center">
+                                    <h2 class="mt-5 mb-5">Test Kit Updated Successfully!</h2>
+                                    <a class="mb-5" href="{{ route('managerDashboard') }}"><button
+                                            class=" btn btn-success">
+                                            Back to My Dashboard
+                                        </button>
+                                    </a>
                                 </div>
                             </div>
                         </div>
@@ -351,12 +267,6 @@
             <!-- Page level custom scripts -->
             <script src="/js/demo/chart-area-demo.js"></script>
             <script src="/js/demo/chart-pie-demo.js"></script>
-
-            <script src="/js/numberInput.js"></script>
-            <script>
-                $("input[type='number']").inputSpinner();
-
-            </script>
 
 </body>
 

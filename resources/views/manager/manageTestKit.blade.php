@@ -185,7 +185,25 @@
 
                     <!-- Content Row -->
                     <div class="row text-center">
-
+                        @php
+                                    $centerName;
+                                    $centerID;
+                                    $rapid;
+                                    $swab;
+                                    $pcr;
+                                    foreach($testCenter as $key => $data) {
+                                        if ($data->name == Auth::user()->testCenter) {
+                                            $centerID = $data->id;
+                                        }      
+                                    }
+                                    foreach ($testKits as $key2 => $data2) {
+                                        if($data2->center_id == $centerID) {
+                                            $rapid = $data2->rapidStock;
+                                            $swab = $data2->swabStock;
+                                            $pcr = $data2->pcrStock;
+                                        }
+                                    }
+                                @endphp
 
                         <div class="col-xl-3 col-md-6 mb-4">
                             <div class="card border-bottom-danger shadow h-100 py-2">
@@ -197,7 +215,7 @@
                                                 style="font-size: 15px">
                                                 Total Stock of Rapid Test Kit</div><br>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="font-size: 40px;">19</div>
+                                                style="font-size: 40px;">{{$rapid}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -214,7 +232,7 @@
                                                 style="font-size: 15px">
                                                 Total Stock of Swab Test Kit</div><br>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="font-size: 40px;">11</div>
+                                                style="font-size: 40px;">{{$swab}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -231,7 +249,7 @@
                                                 style="font-size: 15px">
                                                 Total Stock of PCR Test Kit</div><br>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="font-size: 40px;">8</div>
+                                                style="font-size: 40px;">{{$pcr}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -248,7 +266,7 @@
                                                 style="font-size: 15px">
                                                 Total of Overall Test Kit Stock</div><br>
                                             <div class="h5 mb-0 font-weight-bold text-gray-800"
-                                                style="font-size: 40px;">38</div>
+                                                style="font-size: 40px;">{{$rapid + $swab + $pcr}}</div>
                                         </div>
                                     </div>
                                 </div>
@@ -272,74 +290,66 @@
                                 <!-- Card Body -->
                                 <div class="card-body">
                                     <table ble class="table table-borderless">
-                                        <tbody>
-                                            <tr>
-                                                <th scope="row">Rapid Test Kit Stock</th>
-                                                <td>
-                                                    <div style="width: 50%; margin: 0 auto;">
-                                                        <input type="number" value="19" min="0" max="100" step="1"
-                                                            name="rapid" />
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-sm mr-2">
-                                                        <i class="fas fa-check"></i>
-                                                        Save Change</button>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times"></i>
-                                                        Cancel</button>
-                                                </td>
-                                                <td>
-                                                    <div class="alert alert-success" role="alert" hidden>
-                                                        Test Kit Updated!
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">Swab Test Kit Stock</th>
-                                                <td>
-                                                    <div style="width: 50%; margin: 0 auto;">
-                                                        <input type="number" value="11" min="0" max="100" step="1"
-                                                            name="swab" />
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-sm mr-2">
-                                                        <i class="fas fa-check"></i>
-                                                        Save Change</button>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times"></i>
-                                                        Cancel</button>
-                                                </td>
-                                                <td>
-                                                    <div class="alert alert-success" role="alert" hidden>
-                                                        Test Kit Updated!
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                            <tr>
-                                                <th scope="row">PCR Test Kit Stock</th>
-                                                <td>
-                                                    <div style="width: 50%; margin: 0 auto;">
-                                                        <input type="number" value="8" min="0" max="100" step="1"
-                                                            name="pcr" />
-                                                    </div>
-                                                </td>
-                                                <td>
-                                                    <button class="btn btn-success btn-sm mr-2">
-                                                        <i class="fas fa-check"></i>
-                                                        Save Change</button>
-                                                    <button class="btn btn-danger btn-sm">
-                                                        <i class="fas fa-times"></i>
-                                                        Cancel</button>
-                                                </td>
-                                                <td>
-                                                    <div class="alert alert-success" role="alert" hidden>
-                                                        Test Kit Updated!
-                                                    </div>
-                                                </td>
-                                            </tr>
-                                        </tbody>
+                                        <form class="needs-validation" novalidate="" method="POST" action="{{ route('manageTestKit') }}">
+                                            @csrf
+                                            <input type="hidden" id="id" name="id" value={{$centerID}}>
+                                            <tbody>
+                                                <tr>
+                                                    <th scope="row">Rapid Test Kit Stock</th>
+                                                    <td>
+                                                        <div style="width: 50%; margin: 0 auto;">
+                                                            <input type="number" value="{{old('rapid', $rapid)}}" min="1" max="10000" step="1"
+                                                                name="rapid" />
+                                                        </div>
+                                                    </td>
+                                                    
+                                                    <td>
+                                                        <div class="alert alert-success" role="alert" hidden>
+                                                            Test Kit Updated!
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">Swab Test Kit Stock</th>
+                                                    <td>
+                                                        <div style="width: 50%; margin: 0 auto;">
+                                                            <input type="number" value="{{$swab}}" min="1" max="10000" step="1"
+                                                                name="swab" />
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                       Save changes to the stock of your test kit?
+                                                    </td>
+                                                    <td>
+                                                        <div class="alert alert-success" role="alert" hidden>
+                                                            Test Kit Updated!
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                                <tr>
+                                                    <th scope="row">PCR Test Kit Stock</th>
+                                                    <td>
+                                                        <div style="width: 50%; margin: 0 auto;">
+                                                            <input type="number" value="{{$pcr}}" min="1" max="10000" step="1"
+                                                                name="pcr" />
+                                                        </div>
+                                                    </td>
+                                                    <td>
+                                                        <button class="btn btn-success btn-sm mr-2">
+                                                            <i class="fas fa-check"></i>
+                                                            Save Change</button>
+                                                        </form>
+                                                        <button type="submit" class="btn btn-danger btn-sm" onClick="refreshPage()">
+                                                            <i class="fas fa-times"></i>
+                                                            Cancel</button>
+                                                    </td>
+                                                    <td>
+                                                        <div class="alert alert-success" role="alert" hidden>
+                                                            Test Kit Updated!
+                                                        </div>
+                                                    </td>
+                                                </tr>
+                                            </tbody>
                                     </table>
                                 </div>
                             </div>
@@ -419,6 +429,11 @@
             <script>
                 $("input[type='number']").inputSpinner();
 
+            </script>
+            <script>
+                function refreshPage(){
+                window.location.reload();
+                } 
             </script>
 
 </body>

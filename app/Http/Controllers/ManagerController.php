@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
+use App\Models\TestKit;
 use DB;
 
 class ManagerController extends Controller
@@ -37,8 +38,20 @@ class ManagerController extends Controller
     }
 
     public function manageTestKit()
-    {
-        return view('manager.manageTestKit');
+    {   
+        $testCenter = DB::table('test_centers')->get();
+        $testKits = DB::table('test_kits')->get();
+        return view('manager.manageTestKit', ['testCenter' => $testCenter, 'testKits' => $testKits]);
+    }
+
+    public function manageTestKitAction(Request $request)
+    {   
+        TestKit::where('id', $request->id)->update([
+            'rapidStock' => $request->rapid,
+            'swabStock' => $request->swab,
+            'pcrStock' => $request->pcr,
+        ]);
+        return view('manager.successUpdateTestKit');
     }
     
     public function viewTestingHistory()
