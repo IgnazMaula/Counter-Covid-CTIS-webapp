@@ -196,7 +196,7 @@
                                 </div>
                                 <!-- Card Body -->
                                 <div class="card-body pl-5 text-center">
-                                    <h2 class="mt-5 mb-5">Patient Registered Successfully!</h2>
+                                    <h2 class="mt-5 mb-5">Patient Registered and Test Booked Successfully!</h2>
                                     <a class="mb-5" href="{{ route('testerDashboard') }}"><button
                                             class=" btn btn-success">
                                             Back to My Dashboard
