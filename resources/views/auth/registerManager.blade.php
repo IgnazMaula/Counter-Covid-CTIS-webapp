@@ -38,7 +38,7 @@
         <main>
             <div class="py-5 text-center">
                 <img class="mb-4" src="images/Counter-Covid Logo.png" alt="" width="300">
-                <h2>Patient Registration Form</h2>
+                <h2>Manager Registration Form</h2>
                 <!-- <p class="lead">Below is an example form built entirely with Bootstrap’s form controls. Each required
                     form group has a validation state that can be triggered </p> -->
             </div>
@@ -49,7 +49,7 @@
                     <form class="needs-validation" novalidate="" method="POST" action="{{ route('register') }}">
                         @csrf
 
-                        <input type="hidden" id="role" name="role" value="patient">
+                        <input type="hidden" id="role" name="role" value="manager">
                         <div class="row g-3">
                             {{-- First Name --}}
                             <div class="col-sm-6">

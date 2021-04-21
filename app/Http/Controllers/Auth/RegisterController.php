@@ -40,9 +40,16 @@ class RegisterController extends Controller
                 return $this->redirectTo;
                 break;
             case 'manager':
-                $this->redirectTo = '/manager/dashboard';
-                return $this->redirectTo;
-                break;
+                if(Auth::user()->testCenter != NULL) {
+                    $this->redirectTo = '/manager/dashboard';
+                    return $this->redirectTo;
+                    break;
+                }
+                else {
+                    $this->redirectTo = '/manager/registerTestCenter';
+                    return $this->redirectTo;
+                    break;
+                }
             case 'tester':
                 $this->redirectTo = '/tester/dashboard';
                 return $this->redirectTo;
@@ -91,7 +98,7 @@ class RegisterController extends Controller
     {   
         
         $name = $data['name'] . ' ' . $data['lastName'];
-        
+ 
         return User::create([
             
             'name' => $name,
@@ -99,6 +106,9 @@ class RegisterController extends Controller
             'password' => Hash::make($data['password']),
             'birthDate' => $data['birthDate'],
             'gender'=> $data['gender'],
+            'role' => $data['role'],
         ]);
+
+        
     }
 }

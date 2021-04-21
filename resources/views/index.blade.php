@@ -137,7 +137,7 @@
                                 <h5>Register for Covid-19 Test</h5>
                             </button>
                         </a>
-                        <a href="{{ route('login') }}">
+                        <a href="{{ route('registerManager') }}">
                             <button class="btn btn-outline-danger" type="button">
                                 <h5>
                                     Register Your Test Center
@@ -210,8 +210,8 @@
                     <hr>
                     <img src="https://img.icons8.com/color/52/ffffff/manager.png" />
                     <p>I'm a manager and I want to register my test center</p>
-                    <a href="{{ route('login') }}">
-                        <button type="button" class="btn btn-danger danger2">Register Test Center</button>
+                    <a href="{{ route('registerManager') }}">
+                        <button type="button" class="btn btn-danger danger2">Register as Manager</button>
                     </a>
                 </div>
                 <div class="modal-footer">

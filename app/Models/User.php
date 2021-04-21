@@ -20,7 +20,6 @@ class User extends Authenticatable
      */
 
     protected $attributes = [
-        'role' => 'patient',
         'currentStatus' => 'Not Tested',
         'birthDate' => '03/10/2000',
         'gender' => 'male',
@@ -32,6 +31,7 @@ class User extends Authenticatable
         'password',
         'birthDate',
         'gender',
+        'role',
     ];
 
     /**

@@ -20,6 +20,8 @@ Route::get('/', function () {
 
 Auth::routes();
 
+Route::get('/registerManager', 'App\Http\Controllers\Auth\RegisterManagerController@index')->name('registerManager');
+
 Route::get('/patient/dashboard', 'App\Http\Controllers\PatientController@dashboard')->name('patientDashboard')->middleware('patient');
 Route::get('/patient/bookTestSchedule', 'App\Http\Controllers\PatientController@bookTestSchedule')->name('bookTestSchedule')->middleware('patient');
 Route::get('/patient/viewTestingHistory', 'App\Http\Controllers\PatientController@viewTestingHistory')->name('patientViewTestingHistory')->middleware('patient');
