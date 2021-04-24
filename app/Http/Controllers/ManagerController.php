@@ -59,6 +59,11 @@ class ManagerController extends Controller
         $covidTests = DB::table('covid_tests')->get();
         return view('manager.viewTestingHistory' , ['covidTests' => $covidTests]);
     }
+    public function testReport()
+    {   
+        $covidTests = DB::table('covid_tests')->get();
+        return view('manager.testReport' , ['covidTests' => $covidTests]);
+    }
 
     public function assignTestCenter()
     {
