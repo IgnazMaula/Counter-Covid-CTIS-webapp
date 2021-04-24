@@ -53,7 +53,8 @@ Route::post('/manager/registerTester', 'App\Http\Controllers\RegisterTesterContr
 Route::post('/manager/manageTestKit', 'App\Http\Controllers\ManagerController@manageTestKitAction')->name('manageTestKit')->middleware('manager');
 
 
-Route::get('/manager/testReport', 'App\Http\Controllers\ReportController@generateReport')->name('generateReport')->middleware('manager');
+Route::get('/manager/testReport', 'App\Http\Controllers\ReportController@generateReportManager')->name('generateReportManager')->middleware('manager');
+Route::get('/tester/testReport', 'App\Http\Controllers\ReportController@generateReportTester')->name('generateReportTester')->middleware('tester');
 
 Route::get('/home', 'App\Http\Controllers\HomeController@index')->name('home');
 
